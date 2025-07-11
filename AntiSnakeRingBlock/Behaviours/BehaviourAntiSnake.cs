@@ -1,16 +1,16 @@
 namespace AntiSnakeRingBlock.Behaviours
 {
-    using AntiSnakeRingBlock.Blocks;
+    using Blocks;
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
     using JumpKing.Level;
 
     public class BehaviourAntiSnake : IBlockBehaviour
     {
+        public static bool IsOnBlock { get; private set; }
         public float BlockPriority => 2.0f;
 
         public bool IsPlayerOnBlock { get; set; }
-        public static bool IsOnBlock { get; private set; }
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext) => inputXVelocity;
 

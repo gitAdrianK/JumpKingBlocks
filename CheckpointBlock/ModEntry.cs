@@ -1,43 +1,48 @@
 namespace CheckpointBlock
 {
     using System.Linq;
-    using CheckpointBlock.Data;
-    using CheckpointBlock.Entities;
-    using CheckpointBlock.Factories;
-    using CheckpointBlock.Setups;
+    using Data;
+    using Entities;
     using EntityComponent;
+    using Factories;
+    using JetBrains.Annotations;
     using JumpKing;
     using JumpKing.Level;
     using JumpKing.Mods;
     using JumpKing.Player;
     using JumpKing.SaveThread;
     using Microsoft.Xna.Framework;
+    using Setups;
+#if DEBUG
+    using System.Diagnostics;
+#endif
 
-    [JumpKingMod(IDENTIFIER)]
+    [JumpKingMod(Identifier)]
     public static class ModEntry
     {
-        private const string IDENTIFIER = "Zebra.CheckpointBlock";
+        private const string Identifier = "Zebra.CheckpointBlock";
 
-        public static DataCheckpoint Data { get; private set; }
-        public static bool IgnoreStart { get; set; }
+        private static DataCheckpoint Data { get; set; }
+        public static bool IgnoreStart { get; private set; }
 
         /// <summary>
-        /// Called by Jump King before the level loads
+        ///     Called by Jump King before the level loads
         /// </summary>
         [BeforeLevelLoad]
+        [UsedImplicitly]
         public static void BeforeLevelLoad()
         {
 #if DEBUG
-            Debugger.Launch();
+            _ = Debugger.Launch();
 #endif
-
             LevelManager.RegisterBlockFactory(new FactoryCheckpoint());
         }
 
         /// <summary>
-        /// Called by Jump King when the Level Starts
+        ///     Called by Jump King when the Level Starts
         /// </summary>
         [OnLevelStart]
+        [UsedImplicitly]
         public static void OnLevelStart()
         {
             var contentManager = Game1.instance.contentManager;
@@ -57,11 +62,13 @@ namespace CheckpointBlock
             IgnoreStart = false;
             foreach (var tag in level.Info.Tags)
             {
-                if (tag == "CheckpointsIgnoreStart")
+                if (tag != "CheckpointsIgnoreStart")
                 {
-                    IgnoreStart = true;
-                    break;
+                    continue;
                 }
+
+                IgnoreStart = true;
+                break;
             }
 
             // This is the default start position.
@@ -72,14 +79,7 @@ namespace CheckpointBlock
                 start = startData.Value.ToPoint();
             }
 
-            if (SaveManager.instance.IsNewGame)
-            {
-                Data = new DataCheckpoint(start);
-            }
-            else
-            {
-                Data = DataCheckpoint.TryDeserialize(start);
-            }
+            Data = SaveManager.instance.IsNewGame ? new DataCheckpoint(start) : DataCheckpoint.TryDeserialize(start);
 
             SetupSet1.Setup(contentManager, level, player, Data, start);
             SetupSet2.Setup(contentManager, level, player, Data, start);
@@ -97,6 +97,7 @@ namespace CheckpointBlock
         }
 
         [OnLevelEnd]
+        [UsedImplicitly]
         public static void OnLevelEnd()
         {
             var level = Game1.instance.contentManager.level;
@@ -104,6 +105,7 @@ namespace CheckpointBlock
             {
                 return;
             }
+
             Data.SaveToFile();
             Data = null;
         }

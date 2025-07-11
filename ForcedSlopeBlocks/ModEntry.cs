@@ -1,16 +1,27 @@
 namespace ForcedSlopeBlocks
 {
-    using ForcedSlopeBlocks.Factories;
+    using Factories;
+    using JetBrains.Annotations;
     using JumpKing.Level;
     using JumpKing.Mods;
+#if DEBUG
+    using System.Diagnostics;
+#endif
 
     [JumpKingMod("Zebra.ForcedSlopesBlock")]
     public static class ModEntry
     {
         /// <summary>
-        /// Called by Jump King before the level loads
+        ///     Called by Jump King before the level loads
         /// </summary>
         [BeforeLevelLoad]
-        public static void BeforeLevelLoad() => LevelManager.RegisterBlockFactory(new FactoryForcedSlope());
+        [UsedImplicitly]
+        public static void BeforeLevelLoad()
+        {
+#if DEBUG
+         Debugger.Launch();
+#endif
+            LevelManager.RegisterBlockFactory(new FactoryForcedSlope());
+        }
     }
 }

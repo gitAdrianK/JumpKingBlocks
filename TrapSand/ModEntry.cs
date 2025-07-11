@@ -1,21 +1,33 @@
 namespace TrapSand
 {
+    using Behaviours;
+    using Blocks;
     using EntityComponent;
+    using Factories;
+    using JetBrains.Annotations;
     using JumpKing;
     using JumpKing.Level;
     using JumpKing.Mods;
     using JumpKing.Player;
-    using TrapSand.Behaviours;
-    using TrapSand.Blocks;
-    using TrapSand.Factories;
+#if DEBUG
+    using System.Diagnostics;
+#endif
 
     [JumpKingMod("Zebra.TrapSand")]
     public static class ModEntry
     {
         [BeforeLevelLoad]
-        public static void BeforeLevelLoad() => LevelManager.RegisterBlockFactory(new FactoryTrap());
+        [UsedImplicitly]
+        public static void BeforeLevelLoad()
+        {
+#if DEBUG
+         Debugger.Launch();
+#endif
+            LevelManager.RegisterBlockFactory(new FactoryTrap());
+        }
 
         [OnLevelStart]
+        [UsedImplicitly]
         public static void OnLevelStart()
         {
             var level = Game1.instance.contentManager.level;
@@ -37,14 +49,16 @@ namespace TrapSand
             var muteSandDown = false;
             foreach (var tag in level.Info.Tags)
             {
-                if (tag == "MuteTrapSandUp")
+                switch (tag)
                 {
-                    muteSandUp = true;
+                    case "MuteTrapSandUp":
+                        muteSandUp = true;
+                        break;
+                    case "MuteTrapSandDown":
+                        muteSandDown = true;
+                        break;
                 }
-                if (tag == "MuteTrapSandDown")
-                {
-                    muteSandDown = true;
-                }
+
                 if (muteSandDown && muteSandUp)
                 {
                     break;

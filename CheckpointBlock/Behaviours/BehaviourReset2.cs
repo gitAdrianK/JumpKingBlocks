@@ -1,7 +1,7 @@
 namespace CheckpointBlock.Behaviours
 {
-    using CheckpointBlock.Blocks;
-    using CheckpointBlock.Data;
+    using Blocks;
+    using Data;
     using JumpKing;
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
@@ -10,20 +10,19 @@ namespace CheckpointBlock.Behaviours
 
     public class BehaviourReset2 : IBlockBehaviour
     {
-        public float BlockPriority => 2.0f;
-
-        public bool IsPlayerOnBlock { get; set; }
-
-        private ICollisionQuery CollisionQuery { get; set; }
-        private CheckpointSet Set { get; set; }
-        private Point Start { get; }
-
         public BehaviourReset2(ICollisionQuery collisionQuery, CheckpointSet set, Point start)
         {
             this.CollisionQuery = collisionQuery;
             this.Set = set;
             this.Start = start;
         }
+
+        private ICollisionQuery CollisionQuery { get; }
+        private CheckpointSet Set { get; }
+        private Point Start { get; }
+        public float BlockPriority => 2.0f;
+
+        public bool IsPlayerOnBlock { get; set; }
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext) => inputXVelocity;
 
@@ -44,7 +43,7 @@ namespace CheckpointBlock.Behaviours
 
             var bodyComp = behaviourContext.BodyComp;
             var hitbox = bodyComp.GetHitbox();
-            _ = this.CollisionQuery.CheckCollision(hitbox, out var _, out AdvCollisionInfo info);
+            _ = this.CollisionQuery.CheckCollision(hitbox, out _, out AdvCollisionInfo info);
             this.IsPlayerOnBlock = info.IsCollidingWith<BlockReset2>();
 
             if (!this.IsPlayerOnBlock

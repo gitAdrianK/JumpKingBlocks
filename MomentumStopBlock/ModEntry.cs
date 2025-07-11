@@ -1,14 +1,18 @@
 namespace MomentumStopBlock
 {
-    using CheckpointBlock.Data;
+    using Behaviours;
+    using Blocks;
+    using Data;
     using EntityComponent;
+    using Factories;
+    using JetBrains.Annotations;
     using JumpKing;
     using JumpKing.Level;
     using JumpKing.Mods;
     using JumpKing.Player;
-    using MomentumStopBlock.Behaviours;
-    using MomentumStopBlock.Blocks;
-    using MomentumStopBlock.Factories;
+#if DEBUG
+    using System.Diagnostics;
+#endif
 
     [JumpKingMod("Zebra.MomentumStopBlock")]
     public static class ModEntry
@@ -16,9 +20,17 @@ namespace MomentumStopBlock
         public static DataMomentumStop Data { get; private set; }
 
         [BeforeLevelLoad]
-        public static void BeforeLevelLoad() => LevelManager.RegisterBlockFactory(new FactoryMomentumStop());
+        [UsedImplicitly]
+        public static void BeforeLevelLoad()
+        {
+#if DEBUG
+         Debugger.Launch();
+#endif
+            LevelManager.RegisterBlockFactory(new FactoryMomentumStop());
+        }
 
         [OnLevelStart]
+        [UsedImplicitly]
         public static void OnLevelStart()
         {
             var contentManager = Game1.instance.contentManager;
@@ -44,17 +56,19 @@ namespace MomentumStopBlock
                     new BehaviourMomentumStop());
             }
 
-            if (level.ID == FactoryMomentumStop.LastUsedMapIdMomStopScreen)
+            if (level.ID != FactoryMomentumStop.LastUsedMapIdMomStopScreen)
             {
-                Data = DataMomentumStop.TryDeserialize();
-                _ = player.m_body.RegisterBlockBehaviour(
-                    typeof(BlockMomentumStopScreen),
-                    new BehaviourMomentumStopScreen(Data));
+                return;
             }
 
+            Data = DataMomentumStop.TryDeserialize();
+            _ = player.m_body.RegisterBlockBehaviour(
+                typeof(BlockMomentumStopScreen),
+                new BehaviourMomentumStopScreen(Data));
         }
 
         [OnLevelEnd]
+        [UsedImplicitly]
         public static void OnLevelEnd()
         {
             var level = Game1.instance.contentManager.level;
@@ -64,6 +78,7 @@ namespace MomentumStopBlock
             {
                 return;
             }
+
             Data.SaveToFile();
         }
     }

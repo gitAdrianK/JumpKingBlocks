@@ -1,17 +1,17 @@
 ﻿namespace MomentumStopBlock.Behaviours
 {
     using System;
+    using Blocks;
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
     using JumpKing.Level;
-    using MomentumStopBlock.Blocks;
 
     public class BehaviourMomentumStop : IBlockBehaviour
     {
+        private bool hasStopped;
         public float BlockPriority => 2.0f;
 
         public bool IsPlayerOnBlock { get; set; }
-        private bool hasStopped;
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext) => inputXVelocity;
 
@@ -32,20 +32,22 @@
 
             var advCollisionInfo = behaviourContext.CollisionInfo.PreResolutionCollisionInfo;
             this.IsPlayerOnBlock = advCollisionInfo.IsCollidingWith<BlockMomentumStop>()
-                || advCollisionInfo.IsCollidingWith<BlockMomentumStopSolid>();
+                                   || advCollisionInfo.IsCollidingWith<BlockMomentumStopSolid>();
 
             if (!this.IsPlayerOnBlock)
             {
                 this.hasStopped = false;
             }
 
-            if (this.IsPlayerOnBlock && !this.hasStopped)
+            if (!this.IsPlayerOnBlock || this.hasStopped)
             {
-                var bodyComp = behaviourContext.BodyComp;
-                bodyComp.Velocity.X = 0;
-                bodyComp.Velocity.Y = Math.Max(0, bodyComp.Velocity.Y);
-                this.hasStopped = true;
+                return true;
             }
+
+            var bodyComp = behaviourContext.BodyComp;
+            bodyComp.Velocity.X = 0;
+            bodyComp.Velocity.Y = Math.Max(0, bodyComp.Velocity.Y);
+            this.hasStopped = true;
 
             return true;
         }

@@ -1,20 +1,22 @@
 namespace AntiSnakeRingBlock.Patches
 {
     using System.Diagnostics.CodeAnalysis;
-    using AntiSnakeRingBlock.Behaviours;
+    using Behaviours;
     using HarmonyLib;
+    using JetBrains.Annotations;
     using JumpKing.MiscEntities.WorldItems;
     using JumpKing.MiscEntities.WorldItems.Inventory;
 
     [HarmonyPatch(typeof(InventoryManager), nameof(InventoryManager.HasItemEnabled))]
-    public class PatchInventoryManager
+    public static class PatchInventoryManager
     {
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Harmony naming convention")]
-        public static void Postfix(Items p_item, ref bool __result)
+        [UsedImplicitly]
+        public static void Postfix(Items pItem, ref bool result)
         {
-            if (p_item == Items.SnakeRing && BehaviourAntiSnake.IsOnBlock)
+            if (pItem == Items.SnakeRing && BehaviourAntiSnake.IsOnBlock)
             {
-                __result = false;
+                result = false;
             }
         }
     }

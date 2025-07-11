@@ -1,22 +1,21 @@
 namespace MomentumStopBlock.Behaviours
 {
     using System;
-    using CheckpointBlock.Data;
+    using Blocks;
+    using Data;
     using JumpKing;
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
     using JumpKing.Level;
-    using MomentumStopBlock.Blocks;
 
     public class BehaviourMomentumStopScreen : IBlockBehaviour
     {
+        public BehaviourMomentumStopScreen(DataMomentumStop data) => this.Data = data;
+
+        private DataMomentumStop Data { get; }
         public float BlockPriority => 2.0f;
 
         public bool IsPlayerOnBlock { get; set; }
-
-        private DataMomentumStop Data { get; set; }
-
-        public BehaviourMomentumStopScreen(DataMomentumStop data) => this.Data = data;
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext) => inputXVelocity;
 
@@ -37,21 +36,23 @@ namespace MomentumStopBlock.Behaviours
 
             var advCollisionInfo = behaviourContext.CollisionInfo.PreResolutionCollisionInfo;
             this.IsPlayerOnBlock = advCollisionInfo.IsCollidingWith<BlockMomentumStopScreen>()
-                || advCollisionInfo.IsCollidingWith<BlockMomentumStopScreenSolid>();
+                                   || advCollisionInfo.IsCollidingWith<BlockMomentumStopScreenSolid>();
 
-            if (this.Data.Screen != Camera.CurrentScreen)
+            if (this.Data.Screen == Camera.CurrentScreen)
             {
-                if (this.IsPlayerOnBlock)
-                {
-                    var bodyComp = behaviourContext.BodyComp;
-                    bodyComp.Velocity.X = 0;
-                    bodyComp.Velocity.Y = Math.Max(0, bodyComp.Velocity.Y);
-                    this.Data.Screen = Camera.CurrentScreen;
-                }
-                else
-                {
-                    this.Data.Screen = -1;
-                }
+                return true;
+            }
+
+            if (this.IsPlayerOnBlock)
+            {
+                var bodyComp = behaviourContext.BodyComp;
+                bodyComp.Velocity.X = 0;
+                bodyComp.Velocity.Y = Math.Max(0, bodyComp.Velocity.Y);
+                this.Data.Screen = Camera.CurrentScreen;
+            }
+            else
+            {
+                this.Data.Screen = -1;
             }
 
             return true;

@@ -5,13 +5,12 @@ namespace AntiSnakeRingBlock.Blocks
 
     public class BlockAntiSnake : BoxBlock, IBlockDebugColor
     {
-        public static readonly Color BLOCKCODE_ANTI_SNAKE = new Color(105, 111, 143);
+        public static readonly Color BlockcodeAntiSnake = new Color(105, 111, 143);
 
         public BlockAntiSnake(Rectangle collider) : base(collider) { }
 
-        public Color DebugColor => BLOCKCODE_ANTI_SNAKE;
-
         protected override bool canBlockPlayer => false;
+
+        public Color DebugColor => BlockcodeAntiSnake;
     }
 }
-

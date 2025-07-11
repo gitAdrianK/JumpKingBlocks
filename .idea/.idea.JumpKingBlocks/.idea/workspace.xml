@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8a9520ba-c44e-4576-9e3d-bf50be794a9c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/AntiSnakeRingBlock.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/AntiSnakeRingBlock.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/Behaviours/BehaviourAntiSnake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/Behaviours/BehaviourAntiSnake.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/Blocks/BlockAntiSnake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/Blocks/BlockAntiSnake.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/Factories/FactoryAntiSnake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/Factories/FactoryAntiSnake.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/Patches/PatchInventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/Patches/PatchInventoryManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntiSnakeRingBlock/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/AntiSnakeRingBlock/packages.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpoint2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpoint2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpointSingleUse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpointSingleUse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpointSingleUse2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourCheckpointSingleUse2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourReset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourReset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourReset2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Behaviours/BehaviourReset2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpoint2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpoint2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpointSingleUse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpointSingleUse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpointSingleUse2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockCheckpointSingleUse2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockReset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockReset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockReset2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Blocks/BlockReset2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/CheckpointBlock.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/CheckpointBlock.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Data/CheckpointSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Data/CheckpointSet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Data/DataCheckpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Data/DataCheckpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Entities/EntityFlag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Entities/EntityFlag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Factories/FactoryCheckpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Factories/FactoryCheckpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Setups/SetupSet1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Setups/SetupSet1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckpointBlock/Setups/SetupSet2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CheckpointBlock/Setups/SetupSet2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ForcedSlopeBlocks/Factories/FactoryForcedSlope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ForcedSlopeBlocks/Factories/FactoryForcedSlope.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ForcedSlopeBlocks/ForcedSlopeBlocks.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ForcedSlopeBlocks/ForcedSlopeBlocks.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ForcedSlopeBlocks/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ForcedSlopeBlocks/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ForcedSlopeBlocks/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ForcedSlopeBlocks/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Behaviours/BehaviourMomentumStop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Behaviours/BehaviourMomentumStop.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Behaviours/BehaviourMomentumStopScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Behaviours/BehaviourMomentumStopScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStop.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStopScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStopScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStopScreenSolid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStopScreenSolid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStopSolid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Blocks/BlockMomentumStopSolid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Data/DataMomentumStop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Data/DataMomentumStop.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Factories/FactoryMomentumStop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Factories/FactoryMomentumStop.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/MomentumStopBlock.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/MomentumStopBlock.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MomentumStopBlock/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MomentumStopBlock/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/Behaviours/BehaviourTrapDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/Behaviours/BehaviourTrapDown.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/Behaviours/BehaviourTrapUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/Behaviours/BehaviourTrapUp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/Blocks/BlockTrapDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/Blocks/BlockTrapDown.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/Blocks/BlockTrapUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/Blocks/BlockTrapUp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/Factories/FactoryTrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/Factories/FactoryTrap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrapSand/TrapSand.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TrapSand/TrapSand.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="jetbrains-rider" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "gitAdrianK"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/gitAdrianK/JumpKingBlocks.git",
+    "accountId": "accc8f35-94a4-4466-a59f-5b786deda4fe"
+  }
+}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/TrapSand/ModEntry.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2zd7ANGmbl1rhyN4AGF0yLZb6ir" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;rider.code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a9520ba-c44e-4576-9e3d-bf50be794a9c" name="Changes" comment="" />
+      <created>1752048951644</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752048951644</updated>
+      <workItem from="1752048952694" duration="36000" />
+      <workItem from="1752049002168" duration="5000" />
+      <workItem from="1752055925750" duration="124000" />
+      <workItem from="1752056076396" duration="1932000" />
+      <workItem from="1752058053724" duration="24000" />
+      <workItem from="1752058619302" duration="44000" />
+      <workItem from="1752059316682" duration="1000" />
+      <workItem from="1752059333097" duration="37000" />
+      <workItem from="1752215945057" duration="813000" />
+    </task>
+    <task id="LOCAL-00001" summary="Move from VisualStudio to Rider">
+      <option name="closed" value="true" />
+      <created>1752058057326</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1752058057326</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Move from VisualStudio to Rider">
+      <option name="closed" value="true" />
+      <created>1752058064397</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1752058064397</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Move from VisualStudio to Rider" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move from VisualStudio to Rider" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

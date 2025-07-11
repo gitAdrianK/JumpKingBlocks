@@ -49,13 +49,16 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="JetBrains.Annotations, Version=4242.42.42.42, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2025.1.0-eap1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Xml.Linq"/>
+    <Reference Include="System.Data.DataSetExtensions"/>
+    <Reference Include="Microsoft.CSharp"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Xml"/>
     <Reference Include="JumpKing">
       <Private>False</Private>
       <HintPath>D:\SteamLibrary\steamapps\common\Jump King\JumpKing.exe</HintPath>
@@ -67,19 +70,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviours\BehaviourMomentumStop.cs" />
-    <Compile Include="Behaviours\BehaviourMomentumStopScreen.cs" />
-    <Compile Include="Blocks\BlockMomentumStop.cs" />
-    <Compile Include="Blocks\BlockMomentumStopScreen.cs" />
-    <Compile Include="Blocks\BlockMomentumStopScreenSolid.cs" />
-    <Compile Include="Blocks\BlockMomentumStopSolid.cs" />
-    <Compile Include="Data\DataMomentumStop.cs" />
-    <Compile Include="Factories\FactoryMomentumStop.cs" />
-    <Compile Include="ModEntry.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Behaviours\BehaviourMomentumStop.cs"/>
+    <Compile Include="Behaviours\BehaviourMomentumStopScreen.cs"/>
+    <Compile Include="Blocks\BlockMomentumStop.cs"/>
+    <Compile Include="Blocks\BlockMomentumStopScreen.cs"/>
+    <Compile Include="Blocks\BlockMomentumStopScreenSolid.cs"/>
+    <Compile Include="Blocks\BlockMomentumStopSolid.cs"/>
+    <Compile Include="Data\DataMomentumStop.cs"/>
+    <Compile Include="Factories\FactoryMomentumStop.cs"/>
+    <Compile Include="ModEntry.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

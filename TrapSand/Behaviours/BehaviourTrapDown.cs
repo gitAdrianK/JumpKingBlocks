@@ -1,13 +1,20 @@
 namespace TrapSand.Behaviours
 {
+    using System.Linq;
+    using Blocks;
     using JumpKing;
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
     using JumpKing.Level;
-    using TrapSand.Blocks;
 
     public class BehaviourTrapDown : IBlockBehaviour
     {
+        public BehaviourTrapDown(ICollisionQuery collisionQuery, bool isMuted)
+        {
+            this.CollisionQuery = collisionQuery;
+            this.IsMuted = isMuted;
+        }
+
         private ICollisionQuery CollisionQuery { get; }
         private bool IsMuted { get; }
         private bool HasPlayed { get; set; }
@@ -15,12 +22,6 @@ namespace TrapSand.Behaviours
         public float BlockPriority => 0.5f;
 
         public bool IsPlayerOnBlock { get; set; }
-
-        public BehaviourTrapDown(ICollisionQuery collisionQuery, bool isMuted)
-        {
-            this.CollisionQuery = collisionQuery;
-            this.IsMuted = isMuted;
-        }
 
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext) => inputXVelocity;
 
@@ -32,30 +33,27 @@ namespace TrapSand.Behaviours
 
         public bool AdditionalYCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
-            if (info.IsCollidingWith<BlockTrapDown>() && !this.IsPlayerOnBlock)
+            if (!info.IsCollidingWith<BlockTrapDown>() || this.IsPlayerOnBlock)
             {
-                var bodyComp = behaviourContext.BodyComp;
-                var playerPosition = bodyComp.GetHitbox();
-                foreach (var block in info.GetCollidedBlocks<BlockTrapDown>())
-                {
-                    var blockRect = block.GetRect();
-                    // See the other behaviour for why magic number.
-                    if ((playerPosition.Top - blockRect.Bottom) >= -3)
-                    {
-                        continue;
-                    }
-                    return false;
-                }
-                return bodyComp.Velocity.Y < 0;
+                return false;
             }
-            return false;
+
+            var bodyComp = behaviourContext.BodyComp;
+            var playerPosition = bodyComp.GetHitbox();
+            if (info.GetCollidedBlocks<BlockTrapDown>().Select(block => block.GetRect())
+                .Any(blockRect => playerPosition.Top - blockRect.Bottom < -3))
+            {
+                return false;
+            }
+
+            return bodyComp.Velocity.Y < 0;
         }
 
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
         {
             var bodyComp = behaviourContext.BodyComp;
             var hitbox = bodyComp.GetHitbox();
-            _ = this.CollisionQuery.CheckCollision(hitbox, out var _, out AdvCollisionInfo info);
+            _ = this.CollisionQuery.CheckCollision(hitbox, out _, out AdvCollisionInfo info);
             this.IsPlayerOnBlock = info.IsCollidingWith<BlockTrapDown>();
             if (!this.IsPlayerOnBlock)
             {

@@ -8,24 +8,8 @@ namespace CheckpointBlock.Entities
 
     public class EntityFlag : Entity
     {
-        private Texture2D Texture { get; set; }
-        private Point Start { get; set; }
-
-        public Point FlagPosition
-        {
-            get => this._flagPosition;
-            set
-            {
-                this._flagPosition = value;
-                // Assuming the position is only set by touching the block,
-                // and as such the current screen in the active screen.
-                this.CurrentScreen = Camera.CurrentScreen;
-            }
-        }
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Field attributes are experimental.")]
-        private Point _flagPosition;
-
-        private int CurrentScreen { get; set; }
+        private Point flagPosition;
 
         public EntityFlag(Texture2D texture, Point start)
         {
@@ -33,6 +17,23 @@ namespace CheckpointBlock.Entities
             this.Start = start;
             this.FlagPosition = start;
         }
+
+        private Texture2D Texture { get; }
+        private Point Start { get; }
+
+        public Point FlagPosition
+        {
+            get => this.flagPosition;
+            set
+            {
+                this.flagPosition = value;
+                // Assuming the position is only set by touching the block,
+                // and as such the current screen in the active screen.
+                this.CurrentScreen = Camera.CurrentScreen;
+            }
+        }
+
+        private int CurrentScreen { get; set; }
 
         public override void Draw()
         {
@@ -47,16 +48,16 @@ namespace CheckpointBlock.Entities
             currentPosition += Camera.Offset.ToPoint();
 
             Game1.spriteBatch.Draw(
-                texture: this.Texture,
-                position: new Vector2(
+                this.Texture,
+                new Vector2(
                     currentPosition.X - (this.Texture.Width / 2.0f),
                     currentPosition.Y - this.Texture.Height),
-                sourceRectangle: new Rectangle(
+                new Rectangle(
                     0,
                     0,
                     this.Texture.Width,
                     this.Texture.Height),
-                color: Color.White);
+                Color.White);
         }
     }
 }
