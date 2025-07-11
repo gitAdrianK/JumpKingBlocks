@@ -1,3 +1,5 @@
+// ReSharper disable InconsistentNaming
+
 namespace AntiSnakeRingBlock.Patches
 {
     using System.Diagnostics.CodeAnalysis;
@@ -12,11 +14,11 @@ namespace AntiSnakeRingBlock.Patches
     {
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Harmony naming convention")]
         [UsedImplicitly]
-        public static void Postfix(Items pItem, ref bool result)
+        public static void Postfix(Items p_item, ref bool __result)
         {
-            if (pItem == Items.SnakeRing && BehaviourAntiSnake.IsOnBlock)
+            if (p_item == Items.SnakeRing && BehaviourAntiSnake.IsOnBlock)
             {
-                result = false;
+                __result = false;
             }
         }
     }
