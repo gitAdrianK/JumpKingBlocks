@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MomentumStopBlock", "Moment
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrapSand", "TrapSand\TrapSand.csproj", "{E37FC8F5-9A13-4160-9482-5573D720B76C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuteJumpSfxBlock", "MuteJumpSfxBlock\MuteJumpSfxBlock.csproj", "{93BE4F8A-59B9-4670-95CB-17A680C95B2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,8 +63,19 @@ Global
 		{E37FC8F5-9A13-4160-9482-5573D720B76C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E37FC8F5-9A13-4160-9482-5573D720B76C}.Release|x64.ActiveCfg = Release|x64
 		{E37FC8F5-9A13-4160-9482-5573D720B76C}.Release|x64.Build.0 = Release|x64
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Debug|x64.Build.0 = Debug|Any CPU
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|x64.ActiveCfg = Release|x64
+		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91DBF6B5-7082-463A-98FD-C2CD575B3686}
 	EndGlobalSection
 EndGlobal

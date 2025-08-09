@@ -1,4 +1,4 @@
-namespace AntiSnakeRingBlock
+namespace MuteJumpSfxBlock
 {
     using System.Reflection;
     using Behaviours;
@@ -18,36 +18,29 @@ namespace AntiSnakeRingBlock
     [JumpKingMod(Identifier)]
     public static class ModEntry
     {
-        private const string Identifier = "Zebra.AntiSnakeRingBlock";
+        private const string Identifier = "Zebra.MuteJumpSfxBlock";
         private const string HarmonyIdentifier = Identifier + ".Harmony";
 
-        /// <summary>
-        ///     Called by Jump King before the level loads
-        /// </summary>
         [BeforeLevelLoad]
         [UsedImplicitly]
         public static void BeforeLevelLoad()
         {
 #if DEBUG
-            Debugger.Launch();
+         Debugger.Launch();
 #endif
             var harmony = new Harmony(HarmonyIdentifier);
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            _ = LevelManager.RegisterBlockFactory(new FactoryAntiSnake());
+            LevelManager.RegisterBlockFactory(new FactoryMuteJumpSfx());
         }
 
         [OnLevelStart]
         [UsedImplicitly]
         public static void OnLevelStart()
         {
-            var contentManager = Game1.instance.contentManager;
-            if (contentManager.level == null)
-            {
-                return;
-            }
-
-            if (contentManager.level.ID != FactoryAntiSnake.LastUsedMapId)
+            var level = Game1.instance.contentManager.level;
+            if (level == null
+                || level.ID != FactoryMuteJumpSfx.LastUsedMapId)
             {
                 return;
             }
@@ -60,7 +53,7 @@ namespace AntiSnakeRingBlock
                 return;
             }
 
-            _ = player.m_body.RegisterBlockBehaviour(typeof(BlockAntiSnake), new BehaviourAntiSnake());
+            _ = player.m_body.RegisterBlockBehaviour(typeof(BlockMuteJumpSfx), new BehaviourMuteJumpSfx());
         }
     }
 }
