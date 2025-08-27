@@ -1,9 +1,9 @@
 namespace MuteJumpSfxBlock.Patches
 {
-    using HarmonyLib;
-    using JumpKing.BodyCompBehaviours;
     using Behaviours;
+    using HarmonyLib;
     using JetBrains.Annotations;
+    using JumpKing.BodyCompBehaviours;
 
     [HarmonyPatch(typeof(PlayBumpSFXBehaviour), nameof(PlayBumpSFXBehaviour.ExecuteBehaviour))]
     public static class PatchPlayBumpSfxBehaviour

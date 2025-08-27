@@ -2,12 +2,12 @@ namespace MuteJumpSfxBlock.Factories
 {
     using System;
     using System.Collections.Generic;
+    using Blocks;
     using JumpKing.API;
     using JumpKing.Level;
     using JumpKing.Level.Sampler;
     using JumpKing.Workshop;
     using Microsoft.Xna.Framework;
-    using Blocks;
 
     public class FactoryMuteJumpSfx : IBlockFactory
     {

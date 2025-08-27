@@ -26,7 +26,7 @@ namespace MuteJumpSfxBlock
         public static void BeforeLevelLoad()
         {
 #if DEBUG
-         Debugger.Launch();
+            _ = Debugger.Launch();
 #endif
             var harmony = new Harmony(HarmonyIdentifier);
             harmony.PatchAll(Assembly.GetExecutingAssembly());

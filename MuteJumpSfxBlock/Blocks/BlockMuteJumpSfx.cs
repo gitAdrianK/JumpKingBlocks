@@ -1,4 +1,4 @@
- namespace MuteJumpSfxBlock.Blocks
+namespace MuteJumpSfxBlock.Blocks
 {
     using JumpKing.Level;
     using Microsoft.Xna.Framework;
