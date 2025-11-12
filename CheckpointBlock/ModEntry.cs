@@ -22,7 +22,7 @@ namespace CheckpointBlock
     {
         private const string Identifier = "Zebra.CheckpointBlock";
 
-        private static DataCheckpoint Data { get; set; }
+        public static DataCheckpoint Data { get; private set; }
         public static bool IgnoreStart { get; private set; }
 
         /// <summary>
@@ -81,19 +81,16 @@ namespace CheckpointBlock
 
             Data = SaveManager.instance.IsNewGame ? new DataCheckpoint(start) : DataCheckpoint.TryDeserialize(start);
 
-            SetupSet1.Setup(contentManager, level, player, Data, start);
-            SetupSet2.Setup(contentManager, level, player, Data, start);
+            SetupSet1.Setup(contentManager, level, player, start);
+            SetupSet2.Setup(contentManager, level, player, start);
 
             var entities = entityManager.Entities
                 .SkipWhile(entity => entity != player)
                 .ToList();
-            entities.ForEach(entity =>
+            foreach (var entity in entities.Where(entity => !(entity is EntityFlag)))
             {
-                if (!(entity is EntityFlag))
-                {
-                    entity.GoToFront();
-                }
-            });
+                entity.GoToFront();
+            }
         }
 
         [OnLevelEnd]

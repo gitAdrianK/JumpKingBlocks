@@ -5,12 +5,12 @@ namespace CheckpointBlock.Blocks
 
     public class BlockCheckpoint2 : BoxBlock, IBlockDebugColor
     {
-        public static readonly Color BlockcodeCheckpoint2 = new Color(3, 238, 124);
+        public static readonly Color ColorCheckpoint2 = new Color(3, 238, 124);
 
         public BlockCheckpoint2(Rectangle collider) : base(collider) { }
 
         protected override bool canBlockPlayer => false;
 
-        public Color DebugColor => BlockcodeCheckpoint2;
+        public Color DebugColor => ColorCheckpoint2;
     }
 }

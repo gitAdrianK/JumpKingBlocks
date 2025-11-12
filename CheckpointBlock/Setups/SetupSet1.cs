@@ -5,7 +5,6 @@ namespace CheckpointBlock.Setups
     using System.Reflection;
     using Behaviours;
     using Blocks;
-    using Data;
     using Entities;
     using Factories;
     using JumpKing;
@@ -23,7 +22,6 @@ namespace CheckpointBlock.Setups
             JKContentManager contentManager,
             Level level,
             PlayerEntity player,
-            DataCheckpoint data,
             Point start)
         {
             if (level.ID != FactoryCheckpoint.LastUsedMapIdSet1)
@@ -38,6 +36,7 @@ namespace CheckpointBlock.Setups
                     Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ??
                     throw new InvalidOperationException(), "checkpoint"));
 
+            var data = ModEntry.Data;
             EntityFlag = new EntityFlag(checkpointTexture, start) { FlagPosition = data.Set1.Current };
             _ = player.m_body.RegisterBlockBehaviour(
                 typeof(BlockReset), new BehaviourReset(LevelManager.Instance, data.Set1, start));

@@ -13,12 +13,12 @@ namespace CheckpointBlock.Factories
     {
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
         {
-            BlockCheckpoint.BlockcodeCheckpoint,
-            BlockCheckpoint2.BlockcodeCheckpoint2,
-            BlockReset.BlockcodeReset,
-            BlockReset2.BlockcodeReset2,
-            BlockCheckpointSingleUse.BlockcodeCheckpointSingleUse,
-            BlockCheckpointSingleUse2.BlockcodeCheckpointSingleUse2
+            BlockCheckpoint.ColorCheckpoint,
+            BlockCheckpoint2.ColorCheckpoint2,
+            BlockReset.ColorReset,
+            BlockReset2.ColorReset2,
+            BlockCheckpointSingleUse.ColorCheckpointSingleUse,
+            BlockCheckpointSingleUse2.ColorCheckpointSingleUse2
         };
 
         public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
@@ -39,22 +39,22 @@ namespace CheckpointBlock.Factories
 
             switch (blockCode)
             {
-                case var _ when blockCode == BlockCheckpoint.BlockcodeCheckpoint:
+                case var _ when blockCode == BlockCheckpoint.ColorCheckpoint:
                     LastUsedMapIdSet1 = level.ID;
                     return new BlockCheckpoint(blockRect);
-                case var _ when blockCode == BlockCheckpoint2.BlockcodeCheckpoint2:
+                case var _ when blockCode == BlockCheckpoint2.ColorCheckpoint2:
                     LastUsedMapIdSet2 = level.ID;
                     return new BlockCheckpoint2(blockRect);
-                case var _ when blockCode == BlockReset.BlockcodeReset:
+                case var _ when blockCode == BlockReset.ColorReset:
                     LastUsedMapIdSet1 = level.ID;
                     return new BlockReset(blockRect);
-                case var _ when blockCode == BlockReset2.BlockcodeReset2:
+                case var _ when blockCode == BlockReset2.ColorReset2:
                     LastUsedMapIdSet2 = level.ID;
                     return new BlockReset2(blockRect);
-                case var _ when blockCode == BlockCheckpointSingleUse.BlockcodeCheckpointSingleUse:
+                case var _ when blockCode == BlockCheckpointSingleUse.ColorCheckpointSingleUse:
                     LastUsedMapIdSet1 = level.ID;
                     return new BlockCheckpointSingleUse(blockRect);
-                case var _ when blockCode == BlockCheckpointSingleUse2.BlockcodeCheckpointSingleUse2:
+                case var _ when blockCode == BlockCheckpointSingleUse2.ColorCheckpointSingleUse2:
                     LastUsedMapIdSet2 = level.ID;
                     return new BlockCheckpointSingleUse2(blockRect);
                 default:
