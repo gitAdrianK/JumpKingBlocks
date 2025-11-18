@@ -21,7 +21,7 @@ namespace TrapSand
         public static void BeforeLevelLoad()
         {
 #if DEBUG
-         Debugger.Launch();
+            Debugger.Launch();
 #endif
             LevelManager.RegisterBlockFactory(new FactoryTrap());
         }

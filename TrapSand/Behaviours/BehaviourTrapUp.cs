@@ -7,6 +7,7 @@ namespace TrapSand.Behaviours
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
     using JumpKing.Level;
+    using Microsoft.Xna.Framework;
 
     public class BehaviourTrapUp : IBlockBehaviour
     {
@@ -19,6 +20,7 @@ namespace TrapSand.Behaviours
         private ICollisionQuery CollisionQuery { get; }
         private bool IsMuted { get; }
         private bool HasPlayed { get; set; }
+        private Rectangle PrevPosition { get; set; }
 
         public float BlockPriority => 2.0f;
 
@@ -34,19 +36,21 @@ namespace TrapSand.Behaviours
 
         public bool AdditionalYCollisionCheck(AdvCollisionInfo info, BehaviourContext behaviourContext)
         {
-            if (!info.IsCollidingWith<BlockTrapUp>() || this.IsPlayerOnBlock)
-            {
-                return false;
-            }
-
             var bodyComp = behaviourContext.BodyComp;
             var playerPosition = bodyComp.GetHitbox();
-            if (info.GetCollidedBlocks<BlockTrapUp>().Select(block => block.GetRect())
-                .Any(blockRect => blockRect.Top - playerPosition.Bottom < -5))
+
+            if (!info.IsCollidingWith<BlockTrapUp>() ||
+                this.IsPlayerOnBlock ||
+                info.GetCollidedBlocks<BlockTrapUp>()
+                    .Select(block => block.GetRect())
+                    .Any(blockRect => (blockRect.Top - playerPosition.Bottom < -5) &&
+                                      (blockRect.Top - this.PrevPosition.Bottom < 1)))
             {
+                this.PrevPosition = playerPosition;
                 return false;
             }
 
+            this.PrevPosition = playerPosition;
             return bodyComp.Velocity.Y >= 0;
         }
 
