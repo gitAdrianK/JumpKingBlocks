@@ -1,6 +1,5 @@
 namespace CheckpointBlock.Behaviours
 {
-    using System.Linq;
     using Blocks;
     using Data;
     using Entities;
@@ -11,16 +10,16 @@ namespace CheckpointBlock.Behaviours
 
     public class BehaviourCheckpoint : IBlockBehaviour
     {
-        public BehaviourCheckpoint(CheckpointSet set, EntityFlag entityFlag)
+        public BehaviourCheckpoint(CheckpointSet[] sets, EntityFlag[] entityFlags)
         {
-            this.Set = set;
-            this.EntityFlag = entityFlag;
+            this.Sets = sets;
+            this.EntityFlags = entityFlags;
         }
 
         private bool HasSet { get; set; }
 
-        private CheckpointSet Set { get; }
-        private EntityFlag EntityFlag { get; }
+        private CheckpointSet[] Sets { get; }
+        private EntityFlag[] EntityFlags { get; }
         public float BlockPriority => 2.0f;
 
         public bool IsPlayerOnBlock { get; set; }
@@ -43,16 +42,17 @@ namespace CheckpointBlock.Behaviours
             }
 
             var advCollisionInfo = behaviourContext.CollisionInfo.PreResolutionCollisionInfo;
-            // I could Harmony Traverse the AdvCollisionInfo typeBlockLookup and clean up the
-            // double behaviours, I'll do it when it becomes needed.
-            this.IsPlayerOnBlock = advCollisionInfo.IsCollidingWith<BlockCheckpoint>();
+            var blocks = advCollisionInfo.GetCollidedBlocks<BlockCheckpoint>();
 
+            this.IsPlayerOnBlock = blocks.Count > 0;
             if (!this.IsPlayerOnBlock)
             {
                 this.HasSet = false;
                 return true;
             }
 
+            // Yes technically this will bug if the player touches one block and w/o leaving touches another,
+            // but who will find the bug, right?
             if (this.HasSet)
             {
                 return true;
@@ -60,10 +60,18 @@ namespace CheckpointBlock.Behaviours
 
             this.HasSet = true;
 
-            var rect = advCollisionInfo.GetCollidedBlocks<BlockCheckpoint>().First().GetRect();
-            var point = new Point(rect.Left + (rect.Width / 2), rect.Bottom);
-            this.Set.Current = point;
-            this.EntityFlag.FlagPosition = point;
+            foreach (var block in blocks)
+            {
+                if (!(block is BlockCheckpoint blockCheckpoint))
+                {
+                    continue;
+                }
+
+                var rect = block.GetRect();
+                var point = new Point(rect.Left + (rect.Width / 2), rect.Bottom);
+                this.Sets[blockCheckpoint.Id].Current = point;
+                this.EntityFlags[blockCheckpoint.Id].FlagPosition = point;
+            }
 
             return true;
         }

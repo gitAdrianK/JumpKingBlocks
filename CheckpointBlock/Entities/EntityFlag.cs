@@ -37,8 +37,8 @@ namespace CheckpointBlock.Entities
 
         public override void Draw()
         {
-            if (this.CurrentScreen != Camera.CurrentScreen
-                || this.Start == this.FlagPosition)
+            if (this.CurrentScreen != Camera.CurrentScreen ||
+                this.Start == this.FlagPosition)
             {
                 return;
             }

@@ -1,6 +1,5 @@
 namespace CheckpointBlock.Behaviours
 {
-    using System.Linq;
     using Blocks;
     using Data;
     using Entities;
@@ -11,16 +10,16 @@ namespace CheckpointBlock.Behaviours
 
     public class BehaviourCheckpointSingleUse : IBlockBehaviour
     {
-        public BehaviourCheckpointSingleUse(CheckpointSet set, EntityFlag entityFlag)
+        public BehaviourCheckpointSingleUse(CheckpointSet[] sets, EntityFlag[] entityFlags)
         {
-            this.Set = set;
-            this.EntityFlag = entityFlag;
+            this.Sets = sets;
+            this.EntityFlags = entityFlags;
         }
 
         private bool HasSet { get; set; }
 
-        private CheckpointSet Set { get; }
-        private EntityFlag EntityFlag { get; }
+        private CheckpointSet[] Sets { get; }
+        private EntityFlag[] EntityFlags { get; }
         public float BlockPriority => 2.0f;
 
         public bool IsPlayerOnBlock { get; set; }
@@ -43,14 +42,17 @@ namespace CheckpointBlock.Behaviours
             }
 
             var advCollisionInfo = behaviourContext.CollisionInfo.PreResolutionCollisionInfo;
-            this.IsPlayerOnBlock = advCollisionInfo.IsCollidingWith<BlockCheckpointSingleUse>();
+            var blocks = advCollisionInfo.GetCollidedBlocks<BlockCheckpointSingleUse>();
 
+            this.IsPlayerOnBlock = blocks.Count > 0;
             if (!this.IsPlayerOnBlock)
             {
                 this.HasSet = false;
                 return true;
             }
 
+            // Yes technically this will bug if the player touches one block and w/o leaving touches another,
+            // but who will find the bug, right?
             if (this.HasSet)
             {
                 return true;
@@ -58,17 +60,25 @@ namespace CheckpointBlock.Behaviours
 
             this.HasSet = true;
 
-            var rect = advCollisionInfo.GetCollidedBlocks<BlockCheckpointSingleUse>().First().GetRect();
-            var point = new Point(rect.Left + (rect.Width / 2), rect.Bottom);
-
-            if (this.Set.Used.Contains(point))
+            foreach (var block in blocks)
             {
-                return true;
-            }
+                if (!(block is BlockCheckpointSingleUse blockCheckpoint))
+                {
+                    continue;
+                }
 
-            _ = this.Set.Used.Add(point);
-            this.Set.Current = point;
-            this.EntityFlag.FlagPosition = point;
+                var rect = block.GetRect();
+                var point = new Point(rect.Left + (rect.Width / 2), rect.Bottom);
+
+                if (this.Sets[blockCheckpoint.Id].Used.Contains(point))
+                {
+                    return true;
+                }
+
+                _ = this.Sets[blockCheckpoint.Id].Used.Add(point);
+                this.Sets[blockCheckpoint.Id].Current = point;
+                this.EntityFlags[blockCheckpoint.Id].FlagPosition = point;
+            }
 
             return true;
         }

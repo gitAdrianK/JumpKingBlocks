@@ -24,7 +24,7 @@ namespace MomentumStopBlock
         public static void BeforeLevelLoad()
         {
 #if DEBUG
-         Debugger.Launch();
+             _ = Debugger.Launch();
 #endif
             LevelManager.RegisterBlockFactory(new FactoryMomentumStop());
         }

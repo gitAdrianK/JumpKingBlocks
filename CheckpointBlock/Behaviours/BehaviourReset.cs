@@ -1,5 +1,6 @@
 namespace CheckpointBlock.Behaviours
 {
+    using System.Linq;
     using Blocks;
     using Data;
     using JumpKing;
@@ -10,15 +11,16 @@ namespace CheckpointBlock.Behaviours
 
     public class BehaviourReset : IBlockBehaviour
     {
-        public BehaviourReset(ICollisionQuery collisionQuery, CheckpointSet set, Point start)
+        public BehaviourReset(ICollisionQuery collisionQuery, CheckpointSet[] sets, Point start)
         {
+            // Using the given collisionQuery to check collision resulted in inaccuracies.
             this.CollisionQuery = collisionQuery;
-            this.Set = set;
+            this.Sets = sets;
             this.Start = start;
         }
 
         private ICollisionQuery CollisionQuery { get; }
-        private CheckpointSet Set { get; }
+        private CheckpointSet[] Sets { get; }
         private Point Start { get; }
         public float BlockPriority => 2.0f;
 
@@ -44,16 +46,24 @@ namespace CheckpointBlock.Behaviours
             var bodyComp = behaviourContext.BodyComp;
             var hitbox = bodyComp.GetHitbox();
             _ = this.CollisionQuery.CheckCollision(hitbox, out _, out AdvCollisionInfo info);
-            this.IsPlayerOnBlock = info.IsCollidingWith<BlockReset>();
+            var blocks = info.GetCollidedBlocks<BlockReset>();
 
-            if (!this.IsPlayerOnBlock
-                || (ModEntry.IgnoreStart && this.Start == this.Set.Current))
+            this.IsPlayerOnBlock = blocks.Count > 0;
+            if (!this.IsPlayerOnBlock)
             {
                 return true;
             }
 
-            bodyComp.Position.X = this.Set.Current.X - (bodyComp.GetHitbox().Width / 2.0f);
-            bodyComp.Position.Y = this.Set.Current.Y - bodyComp.GetHitbox().Height;
+            // Resetting to every block touched makes not sense, so we do first only.
+            var block = blocks.First();
+            if (!(block is BlockReset blockReset) ||
+                (ModEntry.IgnoreStart && this.Start == this.Sets[blockReset.Id].Current))
+            {
+                return true;
+            }
+
+            bodyComp.Position.X = this.Sets[blockReset.Id].Current.X - (bodyComp.GetHitbox().Width / 2.0f);
+            bodyComp.Position.Y = this.Sets[blockReset.Id].Current.Y - bodyComp.GetHitbox().Height;
             bodyComp.Velocity = Vector2.Zero;
             Camera.UpdateCamera(bodyComp.Position.ToPoint());
 

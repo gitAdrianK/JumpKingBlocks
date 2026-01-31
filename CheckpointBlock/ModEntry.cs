@@ -1,7 +1,6 @@
 namespace CheckpointBlock
 {
     using System.Linq;
-    using Data;
     using Entities;
     using EntityComponent;
     using Factories;
@@ -10,8 +9,6 @@ namespace CheckpointBlock
     using JumpKing.Level;
     using JumpKing.Mods;
     using JumpKing.Player;
-    using JumpKing.SaveThread;
-    using Microsoft.Xna.Framework;
     using Setups;
 #if DEBUG
     using System.Diagnostics;
@@ -20,9 +17,8 @@ namespace CheckpointBlock
     [JumpKingMod(Identifier)]
     public static class ModEntry
     {
+        public const int SetCount = 10;
         private const string Identifier = "Zebra.CheckpointBlock";
-
-        public static DataCheckpoint Data { get; private set; }
         public static bool IgnoreStart { get; private set; }
 
         /// <summary>
@@ -45,9 +41,8 @@ namespace CheckpointBlock
         [UsedImplicitly]
         public static void OnLevelStart()
         {
-            var contentManager = Game1.instance.contentManager;
-            var level = contentManager.level;
-            if (level == null || level.ID != FactoryCheckpoint.LastUsedMapId)
+            var level = Game1.instance.contentManager.level;
+            if (level == null || !FactoryCheckpoint.LastUsedMapIds.Contains(level.ID))
             {
                 return;
             }
@@ -71,18 +66,7 @@ namespace CheckpointBlock
                 break;
             }
 
-            // This is the default start position.
-            var start = new Point(231, 302);
-            var startData = level.Info.About.StartData?.Position;
-            if (startData.HasValue)
-            {
-                start = startData.Value.ToPoint();
-            }
-
-            Data = SaveManager.instance.IsNewGame ? new DataCheckpoint(start) : DataCheckpoint.TryDeserialize(start);
-
-            SetupSet1.Setup(contentManager, level, player, start);
-            SetupSet2.Setup(contentManager, level, player, start);
+            SetupSets.Setup(level, player);
 
             var entities = entityManager.Entities
                 .SkipWhile(entity => entity != player)
@@ -98,13 +82,12 @@ namespace CheckpointBlock
         public static void OnLevelEnd()
         {
             var level = Game1.instance.contentManager.level;
-            if (level == null || level.ID != FactoryCheckpoint.LastUsedMapId)
+            if (level == null || !FactoryCheckpoint.LastUsedMapIds.Contains(level.ID))
             {
                 return;
             }
 
-            Data.SaveToFile();
-            Data = null;
+            SetupSets.Cleanup();
         }
     }
 }

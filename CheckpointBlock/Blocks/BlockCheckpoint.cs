@@ -5,12 +5,13 @@ namespace CheckpointBlock.Blocks
 
     public class BlockCheckpoint : BoxBlock, IBlockDebugColor
     {
-        public static readonly Color ColorCheckpoint = new Color(1, 238, 124);
+        public BlockCheckpoint(Rectangle collider, int id) : base(collider) => this.Id = id;
 
-         public BlockCheckpoint(Rectangle collider) : base(collider) { }
+        public int Id { get; }
 
-         protected override bool canBlockPlayer => false;
+        protected override bool canBlockPlayer => false;
 
-        public Color DebugColor => ColorCheckpoint;
-     }
+        // R value will be from 1 to SetCount, check in the factory.
+        public Color DebugColor => new Color(this.Id, 238, 124);
+    }
 }

@@ -50,7 +50,7 @@ namespace CheckpointBlock.Data
                         int.Parse(element.Element("Current")?.Element("Y")?.Value ??
                                   throw new InvalidOperationException())
                     ),
-                    Used = used
+                    Used = used,
                 };
             }
 
@@ -67,7 +67,7 @@ namespace CheckpointBlock.Data
                     int.Parse(element.Element("Current")?.Element("X")?.Value ?? throw new InvalidOperationException()),
                     int.Parse(element.Element("Current")?.Element("Y")?.Value ?? throw new InvalidOperationException())
                 ),
-                Used = used
+                Used = used,
             };
         }
 

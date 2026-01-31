@@ -1,16 +1,17 @@
- namespace CheckpointBlock.Blocks
+namespace CheckpointBlock.Blocks
 {
     using JumpKing.Level;
     using Microsoft.Xna.Framework;
 
     public class BlockReset : BoxBlock, IBlockDebugColor
     {
-        public static readonly Color ColorReset = new Color(2, 238, 124);
+        public BlockReset(Rectangle collider, int id) : base(collider) => this.Id = id;
 
-        public BlockReset(Rectangle collider) : base(collider) { }
+        public int Id { get; }
 
         protected override bool canBlockPlayer => false;
 
-        public Color DebugColor => ColorReset;
+        // R value will be from 1 to SetCount, check in the factory.
+        public Color DebugColor => new Color(this.Id, 239, 124);
     }
 }

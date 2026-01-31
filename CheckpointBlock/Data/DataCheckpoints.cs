@@ -3,35 +3,27 @@ namespace CheckpointBlock.Data
     using System.IO;
     using System.Xml.Linq;
     using JumpKing;
-    using Microsoft.Xna.Framework;
 
-    public class DataCheckpoint
+    public class DataCheckpoints
     {
-        public DataCheckpoint(Point start)
-        {
-            this.Set1 = new CheckpointSet(start);
-            this.Set2 = new CheckpointSet(start);
-        }
+        private const int SetCount = ModEntry.SetCount;
 
         /// <summary>
-        ///     The first checkpoint set.
+        ///     All checkpoint sets.
         /// </summary>
-        public CheckpointSet Set1 { get; private set; }
+        public CheckpointSet[] Sets { get; } = new CheckpointSet[SetCount];
 
-        /// <summary>
-        ///     The second checkpoint set.
-        /// </summary>
-        public CheckpointSet Set2 { get; private set; }
-
-        public static DataCheckpoint TryDeserialize(Point start)
+        public static DataCheckpoints TryDeserialize()
         {
             var file = Path.Combine(
                 Game1.instance.contentManager.root,
                 "zebrasSaves",
                 "checkpointBlock.sav");
+
+            var data = new DataCheckpoints();
             if (!File.Exists(file))
             {
-                return new DataCheckpoint(start);
+                return data;
             }
 
             using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -39,31 +31,47 @@ namespace CheckpointBlock.Data
                 var doc = XDocument.Load(fs);
                 var root = doc.Root;
 
-                return new DataCheckpoint(start)
+                if (root == null)
                 {
-                    Set1 = CheckpointSet.FromXElement(root?.Element("Set1")),
-                    Set2 = CheckpointSet.FromXElement(root?.Element("Set2"))
-                };
+                    return data;
+                }
+
+                for (var i = 0; i < SetCount; i++)
+                {
+                    var element = root.Element($"Set{i + 1}");
+                    if (element != null)
+                    {
+                        data.Sets[i] = CheckpointSet.FromXElement(element);
+                    }
+                }
             }
+
+            return data;
         }
 
-        /// <summary>
-        ///     Saves the data to file.
-        /// </summary>
         public void SaveToFile()
         {
             var path = Path.Combine(
                 Game1.instance.contentManager.root,
                 "zebrasSaves");
+
             if (!Directory.Exists(path))
             {
-                _ = Directory.CreateDirectory(path);
+                Directory.CreateDirectory(path);
             }
 
-            var doc = new XDocument(
-                new XElement("CheckpointData",
-                    this.Set1.ToXElement("Set1"),
-                    this.Set2.ToXElement("Set2")));
+            var root = new XElement("CheckpointData");
+            for (var i = 0; i < SetCount; i++)
+            {
+                if (this.Sets[i] == null)
+                {
+                    continue;
+                }
+
+                root.Add(this.Sets[i].ToXElement($"Set{i + 1}"));
+            }
+
+            var doc = new XDocument(root);
 
             using (var fs = new FileStream(
                        Path.Combine(path, "checkpointBlock.sav"),
