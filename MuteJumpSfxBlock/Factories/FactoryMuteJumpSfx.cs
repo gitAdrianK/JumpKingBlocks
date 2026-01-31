@@ -13,7 +13,7 @@ namespace MuteJumpSfxBlock.Factories
     {
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
         {
-            BlockMuteJumpSfx.BlockcodeMuteJumpSfx
+            BlockMuteJumpSfx.BlockcodeMuteJumpSfx,
         };
 
         public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;

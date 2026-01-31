@@ -43,8 +43,8 @@ namespace TrapSand.Behaviours
                 this.IsPlayerOnBlock ||
                 info.GetCollidedBlocks<BlockTrapUp>()
                     .Select(block => block.GetRect())
-                    .Any(blockRect => (blockRect.Top - playerPosition.Bottom < -5) &&
-                                      (blockRect.Top - this.PrevPosition.Bottom < 0)))
+                    .Any(blockRect => blockRect.Top - playerPosition.Bottom < -5 &&
+                                      blockRect.Top - this.PrevPosition.Bottom < 0))
             {
                 this.PrevPosition = playerPosition;
                 return false;

@@ -32,7 +32,7 @@ namespace MomentumStopBlock.Data
 
                 return new DataMomentumStop
                 {
-                    Screen = int.Parse(root?.Element("Screen")?.Value ?? throw new InvalidOperationException())
+                    Screen = int.Parse(root?.Element("Screen")?.Value ?? throw new InvalidOperationException()),
                 };
             }
         }

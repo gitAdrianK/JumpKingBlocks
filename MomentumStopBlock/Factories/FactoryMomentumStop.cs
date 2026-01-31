@@ -16,7 +16,7 @@ namespace MomentumStopBlock.Factories
             BlockMomentumStop.BlockcodeMomStop,
             BlockMomentumStopSolid.BlockcodeMomStopSolid,
             BlockMomentumStopScreen.BlockcodeMomStopScreen,
-            BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid
+            BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid,
         };
 
         public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
