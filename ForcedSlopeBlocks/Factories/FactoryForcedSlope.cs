@@ -2,6 +2,7 @@ namespace ForcedSlopeBlocks.Factories
 {
     using System;
     using System.Collections.Generic;
+    using Blocks;
     using JumpKing.API;
     using JumpKing.Level;
     using JumpKing.Level.Sampler;
@@ -24,18 +25,7 @@ namespace ForcedSlopeBlocks.Factories
             => SupportedBlockCodes.Contains(blockCode);
 
         bool IBlockFactory.IsSolidBlock(Color blockCode)
-        {
-            switch (blockCode)
-            {
-                case var _ when blockCode == BlockcodeTopLeft:
-                case var _ when blockCode == BlockcodeTopRight:
-                case var _ when blockCode == BlockcodeBottomLeft:
-                case var _ when blockCode == BlockcodeBottomRight:
-                    return true;
-            }
-
-            return false;
-        }
+            => SupportedBlockCodes.Contains(blockCode);
 
         IBlock IBlockFactory.GetBlock(Color blockCode, Rectangle blockRect, Level level, LevelTexture textureSrc,
             int currentScreen, int x, int y)
@@ -47,7 +37,7 @@ namespace ForcedSlopeBlocks.Factories
                 case var _ when blockCode == BlockcodeTopRight:
                     return new SlopeBlock(blockRect, SlopeType.TopRight);
                 case var _ when blockCode == BlockcodeBottomLeft:
-                    return new SlopeBlock(blockRect, SlopeType.BottomLeft);
+                    return new BlockBottomLeft(blockRect, SlopeType.BottomLeft);
                 case var _ when blockCode == BlockcodeBottomRight:
                     return new SlopeBlock(blockRect, SlopeType.BottomRight);
                 default:
