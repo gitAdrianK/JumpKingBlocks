@@ -11,13 +11,11 @@
         private static readonly AccessTools.FieldRef<SlopeBlock, Rectangle> BoxRef =
             AccessTools.FieldRefAccess<SlopeBlock, Rectangle>("m_box");
 
-        private static readonly AccessTools.FieldRef<SlopeBlock, SlopeType> TypeRef =
-            AccessTools.FieldRefAccess<SlopeBlock, SlopeType>("m_type");
-
+        /// <summary>FieldRef of the <c>m_lines</c> field of <see cref="SlopeBlock" />.</summary>
         private static readonly AccessTools.FieldRef<SlopeBlock, Line[]> LinesRef =
             AccessTools.FieldRefAccess<SlopeBlock, Line[]>("m_lines");
 
-        public BlockBottomLeft(Rectangle position, SlopeType slopeType) : base(position, slopeType)
+        public BlockBottomLeft(Rectangle position) : base(position, SlopeType.BottomLeft)
         {
             BoxRef(this).Deconstruct(out var x, out var y, out var width, out var height);
             var lines = new Line[3];

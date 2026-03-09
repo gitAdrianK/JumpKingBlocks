@@ -37,7 +37,7 @@ namespace ForcedSlopeBlocks.Factories
                 case var _ when blockCode == BlockcodeTopRight:
                     return new SlopeBlock(blockRect, SlopeType.TopRight);
                 case var _ when blockCode == BlockcodeBottomLeft:
-                    return new BlockBottomLeft(blockRect, SlopeType.BottomLeft);
+                    return new BlockBottomLeft(blockRect);
                 case var _ when blockCode == BlockcodeBottomRight:
                     return new SlopeBlock(blockRect, SlopeType.BottomRight);
                 default:
