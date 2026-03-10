@@ -60,6 +60,7 @@
     <Compile Include="Blocks\BlockAntiSnake.cs"/>
     <Compile Include="Factories\FactoryAntiSnake.cs"/>
     <Compile Include="ModEntry.cs"/>
+    <Compile Include="Patches\PatchGameLoop.cs" />
     <Compile Include="Patches\PatchInventoryManager.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>

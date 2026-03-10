@@ -11,6 +11,7 @@ namespace AntiSnakeRingBlock
     using JumpKing.Level;
     using JumpKing.Mods;
     using JumpKing.Player;
+    using Patches;
 #if DEBUG
     using System.Diagnostics;
 #endif
@@ -41,13 +42,8 @@ namespace AntiSnakeRingBlock
         [UsedImplicitly]
         public static void OnLevelStart()
         {
-            var contentManager = Game1.instance.contentManager;
-            if (contentManager.level == null)
-            {
-                return;
-            }
-
-            if (contentManager.level.ID != FactoryAntiSnake.LastUsedMapId)
+            var level = Game1.instance.contentManager.level;
+            if (level == null || level.ID != FactoryAntiSnake.LastUsedMapId)
             {
                 return;
             }
@@ -61,6 +57,18 @@ namespace AntiSnakeRingBlock
             }
 
             _ = player.m_body.RegisterBlockBehaviour(typeof(BlockAntiSnake), new BehaviourAntiSnake());
+
+            PatchGameLoop.ShowAntiSnakeRingIcon = false;
+            foreach (var tag in level.Info.Tags)
+            {
+                if (tag != "ShowAntiSnakeRingIcon")
+                {
+                    continue;
+                }
+
+                PatchGameLoop.ShowAntiSnakeRingIcon = true;
+                break;
+            }
         }
     }
 }

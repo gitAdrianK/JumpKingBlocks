@@ -12,14 +12,19 @@ namespace AntiSnakeRingBlock.Patches
     [HarmonyPatch(typeof(InventoryManager), nameof(InventoryManager.HasItemEnabled))]
     public static class PatchInventoryManager
     {
+        public static bool OriginalResult { get; private set; }
+
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Harmony naming convention")]
         [UsedImplicitly]
         public static void Postfix(Items p_item, ref bool __result)
         {
-            if (p_item == Items.SnakeRing && BehaviourAntiSnake.IsOnBlock)
+            OriginalResult = __result;
+            if (p_item != Items.SnakeRing || !BehaviourAntiSnake.IsOnBlock)
             {
-                __result = false;
+                return;
             }
+
+            __result = false;
         }
     }
 }
