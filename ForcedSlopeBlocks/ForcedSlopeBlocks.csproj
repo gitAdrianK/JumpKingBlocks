@@ -56,7 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blocks\BlockBottomLeft.cs"/>
+    <Compile Include="Blocks\SlopeBottomLeft.cs" />
     <Compile Include="Factories\FactoryForcedSlope.cs"/>
     <Compile Include="ModEntry.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>

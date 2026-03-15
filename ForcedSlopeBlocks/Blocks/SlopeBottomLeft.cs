@@ -5,7 +5,7 @@
     using JumpKing.Level;
     using Microsoft.Xna.Framework;
 
-    public class BlockBottomLeft : SlopeBlock
+    public class SlopeBottomLeft : SlopeBlock
     {
         /// <summary>FieldRef of the <c>m_box</c> field of <see cref="SlopeBlock" />.</summary>
         private static readonly AccessTools.FieldRef<SlopeBlock, Rectangle> BoxRef =
@@ -15,7 +15,7 @@
         private static readonly AccessTools.FieldRef<SlopeBlock, Line[]> LinesRef =
             AccessTools.FieldRefAccess<SlopeBlock, Line[]>("m_lines");
 
-        public BlockBottomLeft(Rectangle position) : base(position, SlopeType.BottomLeft)
+        public SlopeBottomLeft(Rectangle position) : base(position, SlopeType.BottomLeft)
         {
             BoxRef(this).Deconstruct(out var x, out var y, out var width, out var height);
             var lines = new Line[3];

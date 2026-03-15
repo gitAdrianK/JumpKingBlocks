@@ -15,6 +15,7 @@ namespace ForcedSlopeBlocks.Factories
         private static readonly Color BlockcodeTopRight = new Color(255, 0, 1);
         private static readonly Color BlockcodeBottomLeft = new Color(255, 2, 0);
         private static readonly Color BlockcodeBottomRight = new Color(255, 0, 2);
+        private static readonly Color BlockcodeBottomLeftFixed = new Color(255, 3, 0);
 
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
         {
@@ -37,9 +38,11 @@ namespace ForcedSlopeBlocks.Factories
                 case var _ when blockCode == BlockcodeTopRight:
                     return new SlopeBlock(blockRect, SlopeType.TopRight);
                 case var _ when blockCode == BlockcodeBottomLeft:
-                    return new BlockBottomLeft(blockRect);
+                    return new SlopeBlock(blockRect, SlopeType.BottomLeft);
                 case var _ when blockCode == BlockcodeBottomRight:
                     return new SlopeBlock(blockRect, SlopeType.BottomRight);
+                case var _ when blockCode == BlockcodeBottomLeftFixed:
+                    return new SlopeBottomLeft(blockRect);
                 default:
                     throw new InvalidOperationException(
                         $"{nameof(FactoryForcedSlope)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
