@@ -1,4 +1,4 @@
-﻿namespace AntiSnakeRingBlock.Patches
+﻿namespace AntiBlocks.Patches
 {
     using System;
     using System.IO;

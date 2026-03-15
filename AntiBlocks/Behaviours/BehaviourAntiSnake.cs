@@ -1,4 +1,4 @@
-namespace AntiSnakeRingBlock.Behaviours
+namespace AntiBlocks.Behaviours
 {
     using Blocks;
     using JumpKing.API;

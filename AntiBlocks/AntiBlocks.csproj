@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AntiSnakeRingBlock</RootNamespace>
-    <AssemblyName>AntiSnakeRingBlock</AssemblyName>
+    <AssemblyName>AntiBlocks</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,9 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviours\BehaviourAntiSnake.cs"/>
+    <Compile Include="Behaviours\BehaviourAntiSplat.cs" />
     <Compile Include="Blocks\BlockAntiSnake.cs"/>
-    <Compile Include="Factories\FactoryAntiSnake.cs"/>
+    <Compile Include="Blocks\BlockAntiSplat.cs" />
+    <Compile Include="Factories\FactoryAntiBlocks.cs" />
     <Compile Include="ModEntry.cs"/>
+    <Compile Include="Patches\PatchFailState.cs" />
     <Compile Include="Patches\PatchGameLoop.cs" />
     <Compile Include="Patches\PatchInventoryManager.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>

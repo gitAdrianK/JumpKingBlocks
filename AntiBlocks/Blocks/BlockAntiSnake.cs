@@ -1,4 +1,4 @@
-namespace AntiSnakeRingBlock.Blocks
+namespace AntiBlocks.Blocks
 {
     using JumpKing.Level;
     using Microsoft.Xna.Framework;

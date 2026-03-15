@@ -1,6 +1,6 @@
 // ReSharper disable InconsistentNaming
 
-namespace AntiSnakeRingBlock.Patches
+namespace AntiBlocks.Patches
 {
     using System.Diagnostics.CodeAnalysis;
     using Behaviours;

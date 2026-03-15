@@ -1,4 +1,4 @@
-namespace AntiSnakeRingBlock
+namespace AntiBlocks
 {
     using System.Reflection;
     using Behaviours;
@@ -19,7 +19,7 @@ namespace AntiSnakeRingBlock
     [JumpKingMod(Identifier)]
     public static class ModEntry
     {
-        private const string Identifier = "Zebra.AntiSnakeRingBlock";
+        private const string Identifier = "Zebra.AntiBlocks";
         private const string HarmonyIdentifier = Identifier + ".Harmony";
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace AntiSnakeRingBlock
             var harmony = new Harmony(HarmonyIdentifier);
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            _ = LevelManager.RegisterBlockFactory(new FactoryAntiSnake());
+            _ = LevelManager.RegisterBlockFactory(new FactoryAntiBlocks());
         }
 
         [OnLevelStart]
@@ -43,7 +43,7 @@ namespace AntiSnakeRingBlock
         public static void OnLevelStart()
         {
             var level = Game1.instance.contentManager.level;
-            if (level == null || level.ID != FactoryAntiSnake.LastUsedMapId)
+            if (level == null || (level.ID != FactoryAntiBlocks.LastUsedMapIdSnake && level.ID != FactoryAntiBlocks.LastUsedMapIdSplat))
             {
                 return;
             }
@@ -56,7 +56,15 @@ namespace AntiSnakeRingBlock
                 return;
             }
 
-            _ = player.m_body.RegisterBlockBehaviour(typeof(BlockAntiSnake), new BehaviourAntiSnake());
+            if (level.ID == FactoryAntiBlocks.LastUsedMapIdSnake)
+            {
+                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockAntiSnake), new BehaviourAntiSnake());
+            }
+            if (level.ID == FactoryAntiBlocks.LastUsedMapIdSplat)
+            {
+                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockAntiSplat), new BehaviourAntiSplat());
+            }
+
 
             PatchGameLoop.ShowAntiSnakeRingIcon = false;
             foreach (var tag in level.Info.Tags)

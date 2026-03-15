@@ -1,4 +1,4 @@
-namespace AntiSnakeRingBlock.Factories
+namespace AntiBlocks.Factories
 {
     using System;
     using System.Collections.Generic;
@@ -9,12 +9,17 @@ namespace AntiSnakeRingBlock.Factories
     using JumpKing.Workshop;
     using Microsoft.Xna.Framework;
 
-    public class FactoryAntiSnake : IBlockFactory
+    public class FactoryAntiBlocks : IBlockFactory
     {
-        private static readonly HashSet<Color> SupportedBlockCodes =
-            new HashSet<Color> { BlockAntiSnake.BlockcodeAntiSnake };
+        private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
+        {
+            BlockAntiSnake.BlockcodeAntiSnake,
+            BlockAntiSplat.BlockcodeAntiSplat,
+        };
 
-        public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
+        public static ulong LastUsedMapIdSnake { get; private set; } = ulong.MaxValue;
+
+        public static ulong LastUsedMapIdSplat { get; private set; } = ulong.MaxValue;
 
         public bool CanMakeBlock(Color blockCode, Level level) => SupportedBlockCodes.Contains(blockCode);
 
@@ -23,18 +28,17 @@ namespace AntiSnakeRingBlock.Factories
         public IBlock GetBlock(Color blockCode, Rectangle blockRect, Level level, LevelTexture textureSrc,
             int currentScreen, int x, int y)
         {
-            if (LastUsedMapId != level.ID && SupportedBlockCodes.Contains(blockCode))
-            {
-                LastUsedMapId = level.ID;
-            }
-
             switch (blockCode)
             {
                 case var _ when blockCode == BlockAntiSnake.BlockcodeAntiSnake:
+                    LastUsedMapIdSnake = level.ID;
                     return new BlockAntiSnake(blockRect);
+                case var _ when blockCode == BlockAntiSplat.BlockcodeAntiSplat:
+                    LastUsedMapIdSplat = level.ID;
+                    return new BlockAntiSplat(blockRect);
                 default:
                     throw new InvalidOperationException(
-                        $"{nameof(FactoryAntiSnake)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
+                        $"{nameof(FactoryAntiBlocks)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
             }
         }
     }
