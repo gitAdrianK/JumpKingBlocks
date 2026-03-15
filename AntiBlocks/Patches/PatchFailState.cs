@@ -1,4 +1,6 @@
-﻿namespace AntiBlocks.Patches
+﻿// ReSharper disable InconsistentNaming
+
+namespace AntiBlocks.Patches
 {
     using BehaviorTree;
     using Behaviours;
@@ -8,10 +10,9 @@
     [HarmonyPatch(typeof(FailState), "MyRun")]
     public static class PatchFailState
     {
-        // ReSharper disable once InconsistentNaming
-        public static bool Prefix(ref BTresult __result)
+        public static bool Prefix(FailState __instance, ref BTresult __result)
         {
-            if (!BehaviourAntiSplat.IsOnBlock)
+            if (__instance.last_result == BTresult.Running || !BehaviourAntiSplat.IsOnBlock)
             {
                 return true;
             }
