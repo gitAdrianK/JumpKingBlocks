@@ -2,7 +2,6 @@ namespace MuteJumpSfxBlock.Patches
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Reflection.Emit;
     using Behaviours;
     using HarmonyLib;
@@ -19,7 +18,7 @@ namespace MuteJumpSfxBlock.Patches
 
             var insertionIndex = -1;
             var continueFound = false;
-            var continueLabel =  il.DefineLabel();
+            var continueLabel = il.DefineLabel();
 
             for (var i = 0; i < code.Count - 2; i++)
             {
