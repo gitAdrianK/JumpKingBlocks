@@ -19,7 +19,11 @@ namespace ForcedSlopeBlocks.Factories
 
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
         {
-            BlockcodeTopLeft, BlockcodeTopRight, BlockcodeBottomLeft, BlockcodeBottomRight,
+            BlockcodeTopLeft,
+            BlockcodeTopRight,
+            BlockcodeBottomLeft,
+            BlockcodeBottomRight,
+            BlockcodeBottomLeftFixed,
         };
 
         bool IBlockFactory.CanMakeBlock(Color blockCode, Level level)
