@@ -72,14 +72,15 @@ namespace MomentumStopBlock
         public static void OnLevelEnd()
         {
             var level = Game1.instance.contentManager.level;
-            if (level == null
-                || level.ID != FactoryMomentumStop.LastUsedMapId
-                || level.ID != FactoryMomentumStop.LastUsedMapIdMomStopScreen)
+            if (level == null)
             {
                 return;
             }
 
-            Data.SaveToFile();
+            if (FactoryMomentumStop.LastUsedMapIdMomStopScreen == level.ID)
+            {
+                Data.SaveToFile();
+            }
         }
     }
 }
