@@ -1,6 +1,5 @@
 namespace CheckpointBlock.Entities
 {
-    using System.Diagnostics.CodeAnalysis;
     using EntityComponent;
     using JumpKing;
     using Microsoft.Xna.Framework;
@@ -8,7 +7,6 @@ namespace CheckpointBlock.Entities
 
     public class EntityFlag : Entity
     {
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Field attributes are experimental.")]
         private Point flagPosition;
 
         public EntityFlag(Texture2D texture, Point start)
@@ -29,7 +27,7 @@ namespace CheckpointBlock.Entities
                 this.flagPosition = value;
                 // Assuming the position is only set by touching the block,
                 // and as such the current screen in the active screen.
-                this.CurrentScreen = Camera.CurrentScreen;
+                this.CurrentScreen = (this.FlagPosition.Y - 346) / -360;
             }
         }
 
