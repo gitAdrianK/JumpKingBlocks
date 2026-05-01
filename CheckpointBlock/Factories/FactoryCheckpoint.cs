@@ -12,7 +12,16 @@ namespace CheckpointBlock.Factories
     {
         private const int SetCount = ModEntry.SetCount;
 
-        public static ulong[] LastUsedMapIds { get; } = new ulong[SetCount];
+        static FactoryCheckpoint()
+        {
+            LastUsedMapIds = new ulong[SetCount];
+            for (var i = 0; i < LastUsedMapIds.Length; i++)
+            {
+                LastUsedMapIds[i] = ulong.MaxValue;
+            }
+        }
+
+        public static ulong[] LastUsedMapIds { get; }
 
         public bool CanMakeBlock(Color blockCode, Level level)
         {

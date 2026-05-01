@@ -43,6 +43,11 @@ namespace CheckpointBlock.Behaviours
                 return true;
             }
 
+            if (!behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<BlockReset>())
+            {
+                return true;
+            }
+
             var bodyComp = behaviourContext.BodyComp;
             var hitbox = bodyComp.GetHitbox();
             _ = this.CollisionQuery.CheckCollision(hitbox, out _, out AdvCollisionInfo info);
