@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.4.2\lib\net35\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations, Version=4242.42.42.42, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.2025.2.4\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
@@ -59,6 +62,7 @@
     <Compile Include="Blocks\BlockTrapUp.cs"/>
     <Compile Include="Factories\FactoryTrap.cs"/>
     <Compile Include="ModEntry.cs"/>
+    <Compile Include="Patches\PatchBodyComp.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ namespace TrapSand.Behaviours
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
     using JumpKing.Level;
+    using Patches;
 
     public class BehaviourTrapDown : IBlockBehaviour
     {
@@ -51,6 +52,13 @@ namespace TrapSand.Behaviours
 
         public bool ExecuteBlockBehaviour(BehaviourContext behaviourContext)
         {
+            if (!behaviourContext.CollisionInfo.PreResolutionCollisionInfo.IsCollidingWith<BlockTrapDown>())
+            {
+                this.IsPlayerOnBlock = false;
+                this.HasPlayed = false;
+                return true;
+            }
+
             var bodyComp = behaviourContext.BodyComp;
             var hitbox = bodyComp.GetHitbox();
             _ = this.CollisionQuery.CheckCollision(hitbox, out _, out AdvCollisionInfo info);
@@ -67,6 +75,7 @@ namespace TrapSand.Behaviours
                 this.HasPlayed = true;
             }
 
+            PatchBodyComp.SetKnocked(bodyComp, true);
             bodyComp.Velocity.X *= 0.25f;
             bodyComp.Velocity.Y = 3.5f;
 
