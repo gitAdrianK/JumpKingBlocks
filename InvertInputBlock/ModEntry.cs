@@ -1,4 +1,4 @@
-namespace AntiBlocks
+﻿namespace InvertInputBlock
 {
     using System.Reflection;
     using Behaviours;
@@ -11,7 +11,6 @@ namespace AntiBlocks
     using JumpKing.Level;
     using JumpKing.Mods;
     using JumpKing.Player;
-    using Patches;
 #if DEBUG
     using System.Diagnostics;
 #endif
@@ -19,7 +18,7 @@ namespace AntiBlocks
     [JumpKingMod(Identifier)]
     public static class ModEntry
     {
-        private const string Identifier = "Zebra.AntiBlocks";
+        private const string Identifier = "Zebra.InvertInputBlock";
         private const string HarmonyIdentifier = Identifier + ".Harmony";
 
         /// <summary>
@@ -30,21 +29,22 @@ namespace AntiBlocks
         public static void BeforeLevelLoad()
         {
 #if DEBUG
-            _ = Debugger.Launch();
+             _ = Debugger.Launch();
 #endif
             var harmony = new Harmony(HarmonyIdentifier);
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            _ = LevelManager.RegisterBlockFactory(new FactoryAntiBlocks());
+            LevelManager.RegisterBlockFactory(new FactoryInvertInput());
         }
 
+        /// <summary>
+        ///     Called by Jump King when the Level Starts
+        /// </summary>
         [OnLevelStart]
-        [UsedImplicitly]
         public static void OnLevelStart()
         {
             var level = Game1.instance.contentManager.level;
-            if (level == null || (level.ID != FactoryAntiBlocks.LastUsedMapIdSnake &&
-                                  level.ID != FactoryAntiBlocks.LastUsedMapIdSplat))
+            if (level == null || level.ID != FactoryInvertInput.LastUsedMapId)
             {
                 return;
             }
@@ -57,28 +57,7 @@ namespace AntiBlocks
                 return;
             }
 
-            if (level.ID == FactoryAntiBlocks.LastUsedMapIdSnake)
-            {
-                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockAntiSnake), new BehaviourAntiSnake());
-            }
-
-            if (level.ID == FactoryAntiBlocks.LastUsedMapIdSplat)
-            {
-                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockAntiSplat), new BehaviourAntiSplat());
-            }
-
-
-            PatchGameLoop.ShowAntiSnakeRingIcon = false;
-            foreach (var tag in level.Info.Tags)
-            {
-                if (tag != "ShowAntiSnakeRingIcon")
-                {
-                    continue;
-                }
-
-                PatchGameLoop.ShowAntiSnakeRingIcon = true;
-                break;
-            }
+            _ = player.m_body.RegisterBlockBehaviour(typeof(BlockInvertInput), new BehaviourInvertInput());
         }
     }
 }

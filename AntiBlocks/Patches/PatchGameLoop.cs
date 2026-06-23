@@ -13,8 +13,6 @@
     [HarmonyPatch(typeof(GameLoop), nameof(GameLoop.Draw))]
     public static class PatchGameLoop
     {
-        private static Texture2D Texture { get; }
-
         static PatchGameLoop()
         {
             var texturePath = Path.Combine(
@@ -23,6 +21,8 @@
                 "AntiSnakeRingIcon");
             Texture = Game1.instance.contentManager.Load<Texture2D>(texturePath);
         }
+
+        private static Texture2D Texture { get; }
 
         public static bool ShowAntiSnakeRingIcon { get; set; }
 
@@ -34,7 +34,7 @@
                     Texture,
                     new Vector2(Game1.WIDTH - Texture.Width - 4, Game1.HEIGHT - Texture.Height - 4),
                     new Rectangle(0, 0, Texture.Width, Texture.Height),
-                    color: Color.White);
+                    Color.White);
             }
         }
     }

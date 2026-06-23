@@ -5,38 +5,43 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{62073883-C96F-404E-A390-A40224C32D71}</ProjectGuid>
+    <ProjectGuid></ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ForcedSlopeBlocks</RootNamespace>
-    <AssemblyName>ForcedSlopeBlocks</AssemblyName>
+    <RootNamespace>JumpKingMod</RootNamespace>
+    <AssemblyName>InvertInputBlock</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net45\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=4242.42.42.42, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.2025.2.4\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <HintPath>..\packages\JetBrains.Annotations.2026.2.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="JumpKing">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Jump King\JumpKing.exe</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Jump King\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System"/>
     <Reference Include="System.Core"/>
@@ -45,20 +50,14 @@
     <Reference Include="Microsoft.CSharp"/>
     <Reference Include="System.Data"/>
     <Reference Include="System.Xml"/>
-    <Reference Include="JumpKing">
-      <Private>False</Private>
-      <HintPath>D:\SteamLibrary\steamapps\common\Jump King\JumpKing.exe</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
-      <Private>False</Private>
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\SteamLibrary\steamapps\common\Jump King\MonoGame.Framework.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blocks\SlopeBottomLeft.cs"/>
-    <Compile Include="Factories\FactoryForcedSlope.cs"/>
+    <Compile Include="Behaviours\BehaviourInvertInput.cs"/>
+    <Compile Include="Blocks\BlockInvertInput.cs"/>
+    <Compile Include="Factories\FactoryInvertInput.cs"/>
     <Compile Include="ModEntry.cs"/>
+    <Compile Include="Patches\PatchPadInstance.cs"/>
+
     <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>
   <ItemGroup>
@@ -72,11 +71,12 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net45.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net45.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NETFramework.ReferenceAssemblies.net45.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net45.targets'))"/>
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
   </Target>
   -->
+
 </Project>

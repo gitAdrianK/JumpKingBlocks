@@ -13,8 +13,7 @@ namespace AntiBlocks.Factories
     {
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
         {
-            BlockAntiSnake.BlockcodeAntiSnake,
-            BlockAntiSplat.BlockcodeAntiSplat,
+            BlockAntiSnake.BlockcodeAntiSnake, BlockAntiSplat.BlockcodeAntiSplat,
         };
 
         public static ulong LastUsedMapIdSnake { get; private set; } = ulong.MaxValue;

@@ -57,13 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviours\BehaviourAntiSnake.cs"/>
-    <Compile Include="Behaviours\BehaviourAntiSplat.cs" />
+    <Compile Include="Behaviours\BehaviourAntiSplat.cs"/>
     <Compile Include="Blocks\BlockAntiSnake.cs"/>
-    <Compile Include="Blocks\BlockAntiSplat.cs" />
-    <Compile Include="Factories\FactoryAntiBlocks.cs" />
+    <Compile Include="Blocks\BlockAntiSplat.cs"/>
+    <Compile Include="Factories\FactoryAntiBlocks.cs"/>
     <Compile Include="ModEntry.cs"/>
-    <Compile Include="Patches\PatchFailState.cs" />
-    <Compile Include="Patches\PatchGameLoop.cs" />
+    <Compile Include="Patches\PatchFailState.cs"/>
+    <Compile Include="Patches\PatchGameLoop.cs"/>
     <Compile Include="Patches\PatchInventoryManager.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>

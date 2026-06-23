@@ -19,7 +19,7 @@ namespace MuteJumpSfxBlock.Patches
 
             var insertionIndex = -1;
             var continueFound = false;
-            var continueLabel =  il.DefineLabel();
+            var continueLabel = il.DefineLabel();
             var isWearingSkin = AccessTools.Method(
                 AccessTools.TypeByName("JumpKing.Player.Skins.SkinManager"),
                 "IsWearingSkin");
