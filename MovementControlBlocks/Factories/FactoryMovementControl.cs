@@ -9,7 +9,7 @@ namespace MomentumStopBlock.Factories
     using JumpKing.Workshop;
     using Microsoft.Xna.Framework;
 
-    public class FactoryMomentumStop : IBlockFactory
+    public class FactoryMovementControl : IBlockFactory
     {
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
         {
@@ -17,11 +17,13 @@ namespace MomentumStopBlock.Factories
             BlockMomentumStopSolid.BlockcodeMomStopSolid,
             BlockMomentumStopScreen.BlockcodeMomStopScreen,
             BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid,
+            BlockSubpixelRound.BlockcodeSubpixelRound,
         };
 
         public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
         public static ulong LastUsedMapIdMomStop { get; private set; } = ulong.MaxValue;
         public static ulong LastUsedMapIdMomStopScreen { get; private set; } = ulong.MaxValue;
+        public static ulong LastUsedMapIdSubpixelRound { get; private set; } = ulong.MaxValue;
 
         public bool CanMakeBlock(Color blockCode, Level level) => SupportedBlockCodes.Contains(blockCode);
 
@@ -49,9 +51,12 @@ namespace MomentumStopBlock.Factories
                 case var _ when blockCode == BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid:
                     LastUsedMapIdMomStopScreen = level.ID;
                     return new BlockMomentumStopScreenSolid(blockRect);
+                case var _ when blockCode == BlockSubpixelRound.BlockcodeSubpixelRound:
+                    LastUsedMapIdSubpixelRound = level.ID;
+                    return new BlockSubpixelRound(blockRect);
                 default:
                     throw new InvalidOperationException(
-                        $"{nameof(FactoryMomentumStop)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
+                        $"{nameof(FactoryMovementControl)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");
             }
         }
     }

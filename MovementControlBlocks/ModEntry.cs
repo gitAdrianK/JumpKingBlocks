@@ -14,7 +14,7 @@ namespace MomentumStopBlock
     using System.Diagnostics;
 #endif
 
-    [JumpKingMod("Zebra.MomentumStopBlock")]
+    [JumpKingMod("Zebra.MovementControlBlocks")]
     public static class ModEntry
     {
         public static DataMomentumStop Data { get; private set; }
@@ -26,7 +26,7 @@ namespace MomentumStopBlock
 #if DEBUG
             _ = Debugger.Launch();
 #endif
-            LevelManager.RegisterBlockFactory(new FactoryMomentumStop());
+            LevelManager.RegisterBlockFactory(new FactoryMovementControl());
         }
 
         [OnLevelStart]
@@ -36,7 +36,7 @@ namespace MomentumStopBlock
             var contentManager = Game1.instance.contentManager;
             var level = contentManager.level;
             if (level == null
-                || level.ID != FactoryMomentumStop.LastUsedMapId)
+                || level.ID != FactoryMovementControl.LastUsedMapId)
             {
                 return;
             }
@@ -49,22 +49,26 @@ namespace MomentumStopBlock
                 return;
             }
 
-            if (level.ID == FactoryMomentumStop.LastUsedMapIdMomStop)
+            if (level.ID == FactoryMovementControl.LastUsedMapIdMomStop)
             {
                 _ = player.m_body.RegisterBlockBehaviour(
                     typeof(BlockMomentumStop),
                     new BehaviourMomentumStop());
             }
 
-            if (level.ID != FactoryMomentumStop.LastUsedMapIdMomStopScreen)
+            if (level.ID == FactoryMovementControl.LastUsedMapIdMomStopScreen)
             {
-                return;
+                Data = DataMomentumStop.TryDeserialize();
+                _ = player.m_body.RegisterBlockBehaviour(
+                    typeof(BlockMomentumStopScreen),
+                    new BehaviourMomentumStopScreen(Data));
             }
 
-            Data = DataMomentumStop.TryDeserialize();
-            _ = player.m_body.RegisterBlockBehaviour(
-                typeof(BlockMomentumStopScreen),
-                new BehaviourMomentumStopScreen(Data));
+            if (level.ID == FactoryMovementControl.LastUsedMapIdSubpixelRound)
+            {
+                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockSubpixelRound),
+                    new BehaviourSubpixelRound());
+            }
         }
 
         [OnLevelEnd]
@@ -77,7 +81,7 @@ namespace MomentumStopBlock
                 return;
             }
 
-            if (FactoryMomentumStop.LastUsedMapIdMomStopScreen == level.ID)
+            if (FactoryMovementControl.LastUsedMapIdMomStopScreen == level.ID)
             {
                 Data.SaveToFile();
             }

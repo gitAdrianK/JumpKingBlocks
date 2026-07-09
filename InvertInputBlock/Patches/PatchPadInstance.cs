@@ -7,6 +7,7 @@
     [HarmonyPatch(typeof(PadInstance), nameof(PadInstance.GetState))]
     public class PatchPadInstance
     {
+        // ReSharper disable once InconsistentNaming
         public static void Postfix(ref PadState __result)
         {
             if (!BehaviourInvertInput.IsOnBlock)

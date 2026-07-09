@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MomentumStopBlock</RootNamespace>
-    <AssemblyName>MomentumStopBlock</AssemblyName>
+    <AssemblyName>MovementControlBlocks</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -55,12 +55,14 @@
   <ItemGroup>
     <Compile Include="Behaviours\BehaviourMomentumStop.cs"/>
     <Compile Include="Behaviours\BehaviourMomentumStopScreen.cs"/>
+    <Compile Include="Behaviours\BehaviourSubpixelRound.cs"/>
     <Compile Include="Blocks\BlockMomentumStop.cs"/>
     <Compile Include="Blocks\BlockMomentumStopScreen.cs"/>
     <Compile Include="Blocks\BlockMomentumStopScreenSolid.cs"/>
     <Compile Include="Blocks\BlockMomentumStopSolid.cs"/>
+    <Compile Include="Blocks\BlockSubpixelRound.cs"/>
     <Compile Include="Data\DataMomentumStop.cs"/>
-    <Compile Include="Factories\FactoryMomentumStop.cs"/>
+    <Compile Include="Factories\FactoryMovementControl.cs"/>
     <Compile Include="ModEntry.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckpointBlock", "Checkpoi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForcedSlopeBlocks", "ForcedSlopeBlocks\ForcedSlopeBlocks.csproj", "{62073883-C96F-404E-A390-A40224C32D71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MomentumStopBlock", "MomentumStopBlock\MomentumStopBlock.csproj", "{54DFB373-ABF2-4873-B7C3-A48A8168D6A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovementControlBlocks", "MovementControlBlocks\MovementControlBlocks.csproj", "{54DFB373-ABF2-4873-B7C3-A48A8168D6A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrapSand", "TrapSand\TrapSand.csproj", "{E37FC8F5-9A13-4160-9482-5573D720B76C}"
 EndProject
@@ -47,10 +47,10 @@ Global
 		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Debug|x64.Build.0 = Debug|x64
 		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|x64.ActiveCfg = Release|x64
 		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|x64.Build.0 = Release|x64
-		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Debug|x64.Build.0 = Debug|Any CPU
 		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Release|x64.ActiveCfg = Release|x64
 		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Release|x64.Build.0 = Release|x64
+		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Debug|x64.ActiveCfg = Debug|x64
+		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
