@@ -1,4 +1,4 @@
-namespace MomentumStopBlock.Blocks
+namespace MovementControl.Blocks
 {
     using JumpKing;
     using JumpKing.Level;

@@ -1,4 +1,4 @@
-﻿namespace InvertInputBlock.Patches
+﻿namespace MovementControl.Patches
 {
     using Behaviours;
     using HarmonyLib;

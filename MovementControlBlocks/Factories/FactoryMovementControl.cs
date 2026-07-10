@@ -1,4 +1,4 @@
-namespace MomentumStopBlock.Factories
+namespace MovementControl.Factories
 {
     using System;
     using System.Collections.Generic;
@@ -18,12 +18,14 @@ namespace MomentumStopBlock.Factories
             BlockMomentumStopScreen.BlockcodeMomStopScreen,
             BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid,
             BlockSubpixelRound.BlockcodeSubpixelRound,
+            BlockInvertInput.BlockcodeInvertInput,
         };
 
         public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
         public static ulong LastUsedMapIdMomStop { get; private set; } = ulong.MaxValue;
         public static ulong LastUsedMapIdMomStopScreen { get; private set; } = ulong.MaxValue;
         public static ulong LastUsedMapIdSubpixelRound { get; private set; } = ulong.MaxValue;
+        public static ulong LastUsedMapIdInvertInput { get; private set; } = ulong.MaxValue;
 
         public bool CanMakeBlock(Color blockCode, Level level) => SupportedBlockCodes.Contains(blockCode);
 
@@ -54,6 +56,9 @@ namespace MomentumStopBlock.Factories
                 case var _ when blockCode == BlockSubpixelRound.BlockcodeSubpixelRound:
                     LastUsedMapIdSubpixelRound = level.ID;
                     return new BlockSubpixelRound(blockRect);
+                case var _ when blockCode == BlockInvertInput.BlockcodeInvertInput:
+                    LastUsedMapIdInvertInput = level.ID;
+                    return new BlockInvertInput(blockRect);
                 default:
                     throw new InvalidOperationException(
                         $"{nameof(FactoryMovementControl)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");

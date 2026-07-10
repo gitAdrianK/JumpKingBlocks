@@ -1,4 +1,4 @@
-﻿namespace MomentumStopBlock.Behaviours
+﻿namespace MovementControl.Behaviours
 {
     using System;
     using Blocks;

@@ -1,4 +1,4 @@
-namespace MomentumStopBlock.Data
+namespace MovementControl.Data
 {
     using System;
     using System.IO;

@@ -1,4 +1,4 @@
-﻿namespace MomentumStopBlock.Blocks
+﻿namespace MovementControl.Blocks
 {
     using JumpKing.Level;
     using Microsoft.Xna.Framework;

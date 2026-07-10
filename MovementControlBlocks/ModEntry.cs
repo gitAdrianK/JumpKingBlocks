@@ -1,10 +1,12 @@
-namespace MomentumStopBlock
+namespace MovementControl
 {
+    using System.Reflection;
     using Behaviours;
     using Blocks;
     using Data;
     using EntityComponent;
     using Factories;
+    using HarmonyLib;
     using JetBrains.Annotations;
     using JumpKing;
     using JumpKing.Level;
@@ -14,9 +16,12 @@ namespace MomentumStopBlock
     using System.Diagnostics;
 #endif
 
-    [JumpKingMod("Zebra.MovementControlBlocks")]
+    [JumpKingMod(Identifier)]
     public static class ModEntry
     {
+        private const string Identifier = "Zebra.MovementControlBlocks";
+        private const string HarmonyIdentifier = Identifier + ".Harmony";
+
         public static DataMomentumStop Data { get; private set; }
 
         [BeforeLevelLoad]
@@ -27,6 +32,9 @@ namespace MomentumStopBlock
             _ = Debugger.Launch();
 #endif
             LevelManager.RegisterBlockFactory(new FactoryMovementControl());
+
+            var harmony = new Harmony(HarmonyIdentifier);
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         [OnLevelStart]
@@ -68,6 +76,12 @@ namespace MomentumStopBlock
             {
                 _ = player.m_body.RegisterBlockBehaviour(typeof(BlockSubpixelRound),
                     new BehaviourSubpixelRound());
+            }
+
+            if (level.ID == FactoryMovementControl.LastUsedMapIdInvertInput)
+            {
+                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockInvertInput),
+                    new BehaviourInvertInput());
             }
         }
 

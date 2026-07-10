@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrapSand", "TrapSand\TrapSa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuteJumpSfxBlock", "MuteJumpSfxBlock\MuteJumpSfxBlock.csproj", "{93BE4F8A-59B9-4670-95CB-17A680C95B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvertInputBlock", "InvertInputBlock\InvertInputBlock.csproj", "{86580E30-2D78-49E6-8484-CE0C7B0C98F1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -47,10 +45,6 @@ Global
 		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Debug|x64.Build.0 = Debug|x64
 		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|x64.ActiveCfg = Release|x64
 		{93BE4F8A-59B9-4670-95CB-17A680C95B2B}.Release|x64.Build.0 = Release|x64
-		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Release|x64.ActiveCfg = Release|x64
-		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Release|x64.Build.0 = Release|x64
-		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Debug|x64.ActiveCfg = Debug|x64
-		{86580E30-2D78-49E6-8484-CE0C7B0C98F1}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

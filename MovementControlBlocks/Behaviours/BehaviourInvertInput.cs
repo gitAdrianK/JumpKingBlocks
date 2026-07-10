@@ -1,4 +1,4 @@
-﻿namespace InvertInputBlock.Behaviours
+﻿namespace MovementControl.Behaviours
 {
     using Blocks;
     using JumpKing.API;
