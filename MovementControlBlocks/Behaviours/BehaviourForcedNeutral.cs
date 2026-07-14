@@ -1,18 +1,12 @@
 ﻿namespace MovementControl.Behaviours
 {
-    using System;
     using Blocks;
     using JumpKing.API;
     using JumpKing.BodyCompBehaviours;
     using JumpKing.Level;
 
-    public class BehaviourMomentumStop : IBlockBehaviour
+    public class BehaviourForcedNeutral : IBlockBehaviour
     {
-        private bool HasStopped { get; set; }
-        public float BlockPriority => 2.0f;
-
-        public bool IsPlayerOnBlock { get; set; }
-
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext) => inputXVelocity;
 
         public float ModifyYVelocity(float inputYVelocity, BehaviourContext behaviourContext) => inputYVelocity;
@@ -31,25 +25,13 @@
             }
 
             var advCollisionInfo = behaviourContext.CollisionInfo.PreResolutionCollisionInfo;
-            this.IsPlayerOnBlock = advCollisionInfo.IsCollidingWith<BlockMomentumStop>()
-                                   || advCollisionInfo.IsCollidingWith<BlockMomentumStopSolid>();
-
-            if (!this.IsPlayerOnBlock)
-            {
-                this.HasStopped = false;
-            }
-
-            if (!this.IsPlayerOnBlock || this.HasStopped)
-            {
-                return true;
-            }
-
-            var bodyComp = behaviourContext.BodyComp;
-            bodyComp.Velocity.X = 0;
-            bodyComp.Velocity.Y = Math.Max(0, bodyComp.Velocity.Y);
-            this.HasStopped = true;
+            this.IsPlayerOnBlock = advCollisionInfo.IsCollidingWith<BlockForcedNeutral>();
 
             return true;
         }
+
+        public float BlockPriority => 2.0f;
+
+        public bool IsPlayerOnBlock { get; set; }
     }
 }

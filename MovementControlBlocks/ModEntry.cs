@@ -12,6 +12,7 @@ namespace MovementControl
     using JumpKing.Level;
     using JumpKing.Mods;
     using JumpKing.Player;
+    using Patches;
 #if DEBUG
     using System.Diagnostics;
 #endif
@@ -43,8 +44,9 @@ namespace MovementControl
         {
             var contentManager = Game1.instance.contentManager;
             var level = contentManager.level;
+            var lastUsedMapIds = FactoryMovementControl.LastUsedMapIds;
             if (level == null
-                || level.ID != FactoryMovementControl.LastUsedMapId)
+                || level.ID != lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.GeneralModUsage])
             {
                 return;
             }
@@ -57,31 +59,37 @@ namespace MovementControl
                 return;
             }
 
-            if (level.ID == FactoryMovementControl.LastUsedMapIdMomStop)
+            var body = player.m_body;
+
+            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.MomentumStop])
             {
-                _ = player.m_body.RegisterBlockBehaviour(
-                    typeof(BlockMomentumStop),
-                    new BehaviourMomentumStop());
+                _ = body.RegisterBlockBehaviour(typeof(BlockMomentumStop), new BehaviourMomentumStop());
             }
 
-            if (level.ID == FactoryMovementControl.LastUsedMapIdMomStopScreen)
+            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.MomentumStopScreen])
             {
                 Data = DataMomentumStop.TryDeserialize();
-                _ = player.m_body.RegisterBlockBehaviour(
-                    typeof(BlockMomentumStopScreen),
-                    new BehaviourMomentumStopScreen(Data));
+                _ = body.RegisterBlockBehaviour(typeof(BlockMomentumStopScreen), new BehaviourMomentumStopScreen(Data));
             }
 
-            if (level.ID == FactoryMovementControl.LastUsedMapIdSubpixelRound)
+            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.SubpixelRound])
             {
-                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockSubpixelRound),
-                    new BehaviourSubpixelRound());
+                _ = body.RegisterBlockBehaviour(typeof(BlockSubpixelRound), new BehaviourSubpixelRound());
             }
 
-            if (level.ID == FactoryMovementControl.LastUsedMapIdInvertInput)
+            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.InvertInput])
             {
-                _ = player.m_body.RegisterBlockBehaviour(typeof(BlockInvertInput),
-                    new BehaviourInvertInput());
+                var behaviour = new BehaviourInvertInput();
+                PatchPadInstance.BehaviourInvertInput = behaviour;
+                _ = body.RegisterBlockBehaviour(typeof(BlockInvertInput), behaviour);
+            }
+
+            // ReSharper disable once InvertIf
+            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.ForcedNeutral])
+            {
+                var behaviour = new BehaviourForcedNeutral();
+                PatchJumpState.BehaviourForcedNeutral = behaviour;
+                _ = body.RegisterBlockBehaviour(typeof(BlockForcedNeutral), behaviour);
             }
         }
 
@@ -95,9 +103,15 @@ namespace MovementControl
                 return;
             }
 
-            if (FactoryMovementControl.LastUsedMapIdMomStopScreen == level.ID)
+            PatchPadInstance.BehaviourInvertInput = null;
+            PatchJumpState.BehaviourForcedNeutral = null;
+
+            // ReSharper disable once InvertIf
+            if (level.ID ==
+                FactoryMovementControl.LastUsedMapIds[(int)FactoryMovementControl.ModBlocks.MomentumStopScreen])
             {
                 Data.SaveToFile();
+                Data = null;
             }
         }
     }

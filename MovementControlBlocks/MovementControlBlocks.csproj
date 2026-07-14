@@ -56,10 +56,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\BehaviourForcedNeutral.cs"/>
     <Compile Include="Behaviours\BehaviourInvertInput.cs"/>
     <Compile Include="Behaviours\BehaviourMomentumStop.cs"/>
     <Compile Include="Behaviours\BehaviourMomentumStopScreen.cs"/>
     <Compile Include="Behaviours\BehaviourSubpixelRound.cs"/>
+    <Compile Include="Blocks\BlockForcedNeutral.cs"/>
     <Compile Include="Blocks\BlockInvertInput.cs"/>
     <Compile Include="Blocks\BlockMomentumStop.cs"/>
     <Compile Include="Blocks\BlockMomentumStopScreen.cs"/>
@@ -69,6 +71,7 @@
     <Compile Include="Data\DataMomentumStop.cs"/>
     <Compile Include="Factories\FactoryMovementControl.cs"/>
     <Compile Include="ModEntry.cs"/>
+    <Compile Include="Patches\PatchJumpState.cs"/>
     <Compile Include="Patches\PatchPadInstance.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>

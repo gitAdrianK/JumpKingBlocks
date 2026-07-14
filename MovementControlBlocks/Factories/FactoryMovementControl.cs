@@ -11,6 +11,16 @@ namespace MovementControl.Factories
 
     public class FactoryMovementControl : IBlockFactory
     {
+        public enum ModBlocks
+        {
+            GeneralModUsage = 0,
+            ForcedNeutral,
+            InvertInput,
+            MomentumStop,
+            MomentumStopScreen,
+            SubpixelRound,
+        }
+
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
         {
             BlockMomentumStop.BlockcodeMomStop,
@@ -19,46 +29,54 @@ namespace MovementControl.Factories
             BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid,
             BlockSubpixelRound.BlockcodeSubpixelRound,
             BlockInvertInput.BlockcodeInvertInput,
+            BlockForcedNeutral.BlockcodeForcedNeutral,
         };
 
-        public static ulong LastUsedMapId { get; private set; } = ulong.MaxValue;
-        public static ulong LastUsedMapIdMomStop { get; private set; } = ulong.MaxValue;
-        public static ulong LastUsedMapIdMomStopScreen { get; private set; } = ulong.MaxValue;
-        public static ulong LastUsedMapIdSubpixelRound { get; private set; } = ulong.MaxValue;
-        public static ulong LastUsedMapIdInvertInput { get; private set; } = ulong.MaxValue;
+        static FactoryMovementControl()
+        {
+            LastUsedMapIds = new ulong[Enum.GetValues(typeof(ModBlocks)).Length];
+            for (var i = 0; i < LastUsedMapIds.Length; i++)
+            {
+                LastUsedMapIds[i] = ulong.MaxValue;
+            }
+        }
+
+        public static ulong[] LastUsedMapIds { get; }
 
         public bool CanMakeBlock(Color blockCode, Level level) => SupportedBlockCodes.Contains(blockCode);
 
-        public bool IsSolidBlock(Color blockCode) => false;
+        public bool IsSolidBlock(Color blockCode)
+            => blockCode == BlockMomentumStopSolid.BlockcodeMomStopSolid
+               || blockCode == BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid;
 
         public IBlock GetBlock(Color blockCode, Rectangle blockRect, Level level, LevelTexture textureSrc,
             int currentScreen, int x, int y)
         {
-            if (LastUsedMapId != level.ID && SupportedBlockCodes.Contains(blockCode))
-            {
-                LastUsedMapId = level.ID;
-            }
+            LastUsedMapIds[(int)ModBlocks.GeneralModUsage] = level.ID;
 
             switch (blockCode)
             {
                 case var _ when blockCode == BlockMomentumStop.BlockcodeMomStop:
-                    LastUsedMapIdMomStop = level.ID;
+                    LastUsedMapIds[(int)ModBlocks.MomentumStop] = level.ID;
                     return new BlockMomentumStop(blockRect);
                 case var _ when blockCode == BlockMomentumStopSolid.BlockcodeMomStopSolid:
-                    LastUsedMapIdMomStop = level.ID;
+                    LastUsedMapIds[(int)ModBlocks.MomentumStop] = level.ID;
                     return new BlockMomentumStopSolid(blockRect);
                 case var _ when blockCode == BlockMomentumStopScreen.BlockcodeMomStopScreen:
-                    LastUsedMapIdMomStopScreen = level.ID;
+                    LastUsedMapIds[(int)ModBlocks.MomentumStopScreen] = level.ID;
                     return new BlockMomentumStopScreen(blockRect);
                 case var _ when blockCode == BlockMomentumStopScreenSolid.BlockcodeMomStopScreenSolid:
-                    LastUsedMapIdMomStopScreen = level.ID;
+                    LastUsedMapIds[(int)ModBlocks.MomentumStopScreen] = level.ID;
                     return new BlockMomentumStopScreenSolid(blockRect);
                 case var _ when blockCode == BlockSubpixelRound.BlockcodeSubpixelRound:
-                    LastUsedMapIdSubpixelRound = level.ID;
+                    LastUsedMapIds[(int)ModBlocks.SubpixelRound] = level.ID;
                     return new BlockSubpixelRound(blockRect);
                 case var _ when blockCode == BlockInvertInput.BlockcodeInvertInput:
-                    LastUsedMapIdInvertInput = level.ID;
+                    LastUsedMapIds[(int)ModBlocks.InvertInput] = level.ID;
                     return new BlockInvertInput(blockRect);
+                case var _ when blockCode == BlockForcedNeutral.BlockcodeForcedNeutral:
+                    LastUsedMapIds[(int)ModBlocks.ForcedNeutral] = level.ID;
+                    return new BlockForcedNeutral(blockRect);
                 default:
                     throw new InvalidOperationException(
                         $"{nameof(FactoryMovementControl)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");

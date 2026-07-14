@@ -7,10 +7,12 @@
     [HarmonyPatch(typeof(PadInstance), nameof(PadInstance.GetState))]
     public class PatchPadInstance
     {
+        public static BehaviourInvertInput BehaviourInvertInput { get; set; }
+
         // ReSharper disable once InconsistentNaming
         public static void Postfix(ref PadState __result)
         {
-            if (!BehaviourInvertInput.IsOnBlock)
+            if (BehaviourInvertInput == null || !BehaviourInvertInput.IsPlayerOnBlock)
             {
                 return;
             }

@@ -7,8 +7,6 @@
 
     public class BehaviourInvertInput : IBlockBehaviour
     {
-        public static bool IsOnBlock { get; private set; }
-
         public float ModifyXVelocity(float inputXVelocity, BehaviourContext behaviourContext) => inputXVelocity;
 
         public float ModifyYVelocity(float inputYVelocity, BehaviourContext behaviourContext) => inputYVelocity;
@@ -27,9 +25,7 @@
             }
 
             var advCollisionInfo = behaviourContext.CollisionInfo.PreResolutionCollisionInfo;
-
             this.IsPlayerOnBlock = advCollisionInfo.IsCollidingWith<BlockInvertInput>();
-            IsOnBlock = this.IsPlayerOnBlock;
 
             return true;
         }
