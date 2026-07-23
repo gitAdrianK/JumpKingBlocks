@@ -1,8 +1,5 @@
-// ReSharper disable InconsistentNaming
-
 namespace AntiBlocks.Patches
 {
-    using System.Diagnostics.CodeAnalysis;
     using Behaviours;
     using HarmonyLib;
     using JetBrains.Annotations;
@@ -14,8 +11,8 @@ namespace AntiBlocks.Patches
     {
         public static bool OriginalResult { get; private set; }
 
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Harmony naming convention")]
         [UsedImplicitly]
+        // ReSharper disable InconsistentNaming
         public static void Postfix(Items p_item, ref bool __result)
         {
             OriginalResult = __result;
