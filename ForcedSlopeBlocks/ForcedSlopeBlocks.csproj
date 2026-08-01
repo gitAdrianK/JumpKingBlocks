@@ -59,6 +59,7 @@
     <Compile Include="Blocks\SlopeBottomLeft.cs"/>
     <Compile Include="Factories\FactoryForcedSlope.cs"/>
     <Compile Include="ModEntry.cs"/>
+    <Compile Include="Patches\PatchLevelManager.cs"/>
     <Compile Include="Patches\PatchSlopeBlock.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs"/>
   </ItemGroup>

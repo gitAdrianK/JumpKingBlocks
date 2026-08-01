@@ -2,7 +2,6 @@
 
 namespace ForcedSlopeBlocks.Patches
 {
-    using System.Collections.Generic;
     using ErikMaths;
     using HarmonyLib;
     using JumpKing.Level;
@@ -11,8 +10,6 @@ namespace ForcedSlopeBlocks.Patches
     [HarmonyPatch(typeof(SlopeBlock), MethodType.Constructor, typeof(Rectangle), typeof(SlopeType))]
     public static class PatchSlopeBlock
     {
-        public static readonly List<SlopeBlock> BottomLeftSlopes = new List<SlopeBlock>();
-
         /// <summary>FieldRef of the <c>m_box</c> field of <see cref="SlopeBlock" />.</summary>
         private static readonly AccessTools.FieldRef<SlopeBlock, Rectangle> BoxRef =
             AccessTools.FieldRefAccess<SlopeBlock, Rectangle>("m_box");
@@ -21,19 +18,13 @@ namespace ForcedSlopeBlocks.Patches
         private static readonly AccessTools.FieldRef<SlopeBlock, Line[]> LinesRef =
             AccessTools.FieldRefAccess<SlopeBlock, Line[]>("m_lines");
 
+        public static bool ShouldFixSlopes { get; set; }
+
         public static void Postfix(SlopeBlock __instance, SlopeType p_slope_type)
         {
-            if (p_slope_type == SlopeType.BottomLeft)
+            if (ShouldFixSlopes && p_slope_type == SlopeType.BottomLeft)
             {
-                BottomLeftSlopes.Add(__instance);
-            }
-        }
-
-        public static void FixAllSlopes()
-        {
-            foreach (var bottomLeftSlope in BottomLeftSlopes)
-            {
-                FixSlopeHitbox(bottomLeftSlope);
+                FixSlopeHitbox(__instance);
             }
         }
 
