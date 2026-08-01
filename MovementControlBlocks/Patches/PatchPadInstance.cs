@@ -5,7 +5,7 @@
     using JumpKing.Controller;
 
     [HarmonyPatch(typeof(PadInstance), nameof(PadInstance.GetState))]
-    public class PatchPadInstance
+    public static class PatchPadInstance
     {
         public static BehaviourInvertInput BehaviourInvertInput { get; set; }
 
