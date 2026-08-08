@@ -28,13 +28,8 @@ namespace MovementControl.Patches
             // ReSharper disable once InvertIf
             if (BehaviourNoSlowdown != null && BehaviourNoSlowdown.IsPlayerOnBlock)
             {
-                if (__state < 0.0f && __instance.body.Velocity.X > __state)
-                {
-                    __instance.body.Velocity.X = __state;
-                    return;
-                }
-
-                if (__state > 0.0f && __instance.body.Velocity.X < __state)
+                if ((__state < 0.0f && __instance.body.Velocity.X > __state)
+                    || (__state > 0.0f && __instance.body.Velocity.X < __state))
                 {
                     __instance.body.Velocity.X = __state;
                 }
