@@ -12,7 +12,7 @@ namespace MovementControl.Patches
     {
         public static BehaviourForcedNeutral BehaviourForcedNeutral { get; set; }
 
-        public static BehaviourNoSlowdown BehaviourNoBreaking { get; set; }
+        public static BehaviourNoSlowdown BehaviourNoSlowdown { get; set; }
 
         [UsedImplicitly]
         public static void Prefix(out float __state, JumpState __instance) => __state = __instance.body.Velocity.X;
@@ -26,7 +26,7 @@ namespace MovementControl.Patches
             }
 
             // ReSharper disable once InvertIf
-            if (BehaviourNoBreaking != null && BehaviourNoBreaking.IsPlayerOnBlock)
+            if (BehaviourNoSlowdown != null && BehaviourNoSlowdown.IsPlayerOnBlock)
             {
                 if (__state < 0.0f && __instance.body.Velocity.X > __state)
                 {

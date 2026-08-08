@@ -96,7 +96,7 @@ namespace MovementControl
             if (id == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.NoSlowdown])
             {
                 var behaviour = new BehaviourNoSlowdown();
-                PatchJumpState.BehaviourNoBreaking = behaviour;
+                PatchJumpState.BehaviourNoSlowdown = behaviour;
                 _ = body.RegisterBlockBehaviour(typeof(BlockNoSlowdown), behaviour);
             }
         }
@@ -113,7 +113,7 @@ namespace MovementControl
 
             PatchPadInstance.BehaviourInvertInput = null;
             PatchJumpState.BehaviourForcedNeutral = null;
-            PatchJumpState.BehaviourNoBreaking = null;
+            PatchJumpState.BehaviourNoSlowdown = null;
 
             // ReSharper disable once InvertIf
             if (level.ID ==
