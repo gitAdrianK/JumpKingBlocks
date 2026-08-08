@@ -19,6 +19,7 @@ namespace MovementControl.Factories
             MomentumStop,
             MomentumStopScreen,
             SubpixelRound,
+            NoSlowdown,
         }
 
         private static readonly HashSet<Color> SupportedBlockCodes = new HashSet<Color>
@@ -30,6 +31,7 @@ namespace MovementControl.Factories
             BlockSubpixelRound.BlockcodeSubpixelRound,
             BlockInvertInput.BlockcodeInvertInput,
             BlockForcedNeutral.BlockcodeForcedNeutral,
+            BlockNoSlowdown.BlockcodeNoSlowdown,
         };
 
         static FactoryMovementControl()
@@ -77,6 +79,9 @@ namespace MovementControl.Factories
                 case var _ when blockCode == BlockForcedNeutral.BlockcodeForcedNeutral:
                     LastUsedMapIds[(int)ModBlocks.ForcedNeutral] = level.ID;
                     return new BlockForcedNeutral(blockRect);
+                case var _ when blockCode == BlockNoSlowdown.BlockcodeNoSlowdown:
+                    LastUsedMapIds[(int)ModBlocks.NoSlowdown] = level.ID;
+                    return new BlockNoSlowdown(blockRect);
                 default:
                     throw new InvalidOperationException(
                         $"{nameof(FactoryMovementControl)} is unable to create a block of Color code ({blockCode.R}, {blockCode.G}, {blockCode.B})");

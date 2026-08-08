@@ -12,18 +12,33 @@ namespace MovementControl.Patches
     {
         public static BehaviourForcedNeutral BehaviourForcedNeutral { get; set; }
 
+        public static BehaviourNoSlowdown BehaviourNoBreaking { get; set; }
+
         [UsedImplicitly]
         public static void Prefix(out float __state, JumpState __instance) => __state = __instance.body.Velocity.X;
 
         [UsedImplicitly]
         public static void Postfix(float __state, JumpState __instance)
         {
-            if (BehaviourForcedNeutral == null || !BehaviourForcedNeutral.IsPlayerOnBlock)
+            if (BehaviourForcedNeutral != null && BehaviourForcedNeutral.IsPlayerOnBlock)
             {
-                return;
+                __instance.body.Velocity.X = __state;
             }
 
-            __instance.body.Velocity.X = __state;
+            // ReSharper disable once InvertIf
+            if (BehaviourNoBreaking != null && BehaviourNoBreaking.IsPlayerOnBlock)
+            {
+                if (__state < 0.0f && __instance.body.Velocity.X > __state)
+                {
+                    __instance.body.Velocity.X = __state;
+                    return;
+                }
+
+                if (__state > 0.0f && __instance.body.Velocity.X < __state)
+                {
+                    __instance.body.Velocity.X = __state;
+                }
+            }
         }
     }
 }

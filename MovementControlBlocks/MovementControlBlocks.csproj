@@ -60,6 +60,7 @@
     <Compile Include="Behaviours\BehaviourInvertInput.cs"/>
     <Compile Include="Behaviours\BehaviourMomentumStop.cs"/>
     <Compile Include="Behaviours\BehaviourMomentumStopScreen.cs"/>
+    <Compile Include="Behaviours\BehaviourNoSlowdown.cs"/>
     <Compile Include="Behaviours\BehaviourSubpixelRound.cs"/>
     <Compile Include="Blocks\BlockForcedNeutral.cs"/>
     <Compile Include="Blocks\BlockInvertInput.cs"/>
@@ -67,6 +68,7 @@
     <Compile Include="Blocks\BlockMomentumStopScreen.cs"/>
     <Compile Include="Blocks\BlockMomentumStopScreenSolid.cs"/>
     <Compile Include="Blocks\BlockMomentumStopSolid.cs"/>
+    <Compile Include="Blocks\BlockNoSlowdown.cs"/>
     <Compile Include="Blocks\BlockSubpixelRound.cs"/>
     <Compile Include="Data\DataMomentumStop.cs"/>
     <Compile Include="Factories\FactoryMovementControl.cs"/>

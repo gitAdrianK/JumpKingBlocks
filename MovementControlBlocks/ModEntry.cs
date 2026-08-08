@@ -60,36 +60,44 @@ namespace MovementControl
             }
 
             var body = player.m_body;
+            var id = level.ID;
 
-            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.MomentumStop])
+            if (id == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.MomentumStop])
             {
                 _ = body.RegisterBlockBehaviour(typeof(BlockMomentumStop), new BehaviourMomentumStop());
             }
 
-            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.MomentumStopScreen])
+            if (id == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.MomentumStopScreen])
             {
                 Data = DataMomentumStop.TryDeserialize();
                 _ = body.RegisterBlockBehaviour(typeof(BlockMomentumStopScreen), new BehaviourMomentumStopScreen(Data));
             }
 
-            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.SubpixelRound])
+            if (id == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.SubpixelRound])
             {
                 _ = body.RegisterBlockBehaviour(typeof(BlockSubpixelRound), new BehaviourSubpixelRound());
             }
 
-            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.InvertInput])
+            if (id == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.InvertInput])
             {
                 var behaviour = new BehaviourInvertInput();
                 PatchPadInstance.BehaviourInvertInput = behaviour;
                 _ = body.RegisterBlockBehaviour(typeof(BlockInvertInput), behaviour);
             }
 
-            // ReSharper disable once InvertIf
-            if (level.ID == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.ForcedNeutral])
+            if (id == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.ForcedNeutral])
             {
                 var behaviour = new BehaviourForcedNeutral();
                 PatchJumpState.BehaviourForcedNeutral = behaviour;
                 _ = body.RegisterBlockBehaviour(typeof(BlockForcedNeutral), behaviour);
+            }
+
+            // ReSharper disable once InvertIf
+            if (id == lastUsedMapIds[(int)FactoryMovementControl.ModBlocks.NoSlowdown])
+            {
+                var behaviour = new BehaviourNoSlowdown();
+                PatchJumpState.BehaviourNoBreaking = behaviour;
+                _ = body.RegisterBlockBehaviour(typeof(BlockNoSlowdown), behaviour);
             }
         }
 
