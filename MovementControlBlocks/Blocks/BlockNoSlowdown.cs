@@ -3,7 +3,7 @@
     using JumpKing.Level;
     using Microsoft.Xna.Framework;
 
-    public class BlockNoSlowdown : BoxBlock
+    public class BlockNoSlowdown : BoxBlock, IBlockDebugColor
     {
         public static readonly Color BlockcodeNoSlowdown = new Color(201, 202, 204);
 
