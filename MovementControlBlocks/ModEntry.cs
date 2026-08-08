@@ -113,6 +113,7 @@ namespace MovementControl
 
             PatchPadInstance.BehaviourInvertInput = null;
             PatchJumpState.BehaviourForcedNeutral = null;
+            PatchJumpState.BehaviourNoBreaking = null;
 
             // ReSharper disable once InvertIf
             if (level.ID ==
